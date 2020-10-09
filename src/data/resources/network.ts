@@ -1,12 +1,9 @@
 // /network/list resources
 
+import { BlockIdentifier, NetworkIdentifier } from "./shared";
+
 export interface NetworkIdentifiersResource {
     network_identifiers: NetworkIdentifier[];
-}
-
-export interface NetworkIdentifier {
-    blockchain: string;
-    network: string;
 }
 
 // /network/options resources
@@ -20,7 +17,7 @@ export interface NetworkOptionsResource {
     allow: {
         operation_statuses: OperationStatus[];
         operation_types: string[];
-        errors: Error[];
+        errors: ErrorType[];
     };
 }
 
@@ -29,7 +26,7 @@ export interface OperationStatus {
     successful: boolean;
 }
 
-export interface Error {
+export interface ErrorType {
     code: number;
     message: string;
     retriable: boolean;
@@ -43,11 +40,6 @@ export interface NetworkStatusResources {
     current_block_timestamp: number;
     genesis_block_identifier: BlockIdentifier;
     peers: Peer[];
-}
-
-export interface BlockIdentifier {
-    index: number;
-    hash: string;
 }
 
 export interface Peer {

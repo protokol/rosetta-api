@@ -38,7 +38,7 @@ export class NetworkController extends Controller {
                         successful: false,
                     },
                 ],
-                operation_types: ["transfer"],
+                operation_types: ["transfer", "delegateRegistration", "vote"], //currently supported types for testing purpose
                 errors: [
                     {
                         code: 400,
