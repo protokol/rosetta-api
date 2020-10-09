@@ -5,7 +5,7 @@ export interface BlockResource {
         block_identifier: BlockIdentifier;
         parent_block_identifier: BlockIdentifier;
         timestamp: number;
-        transaction: Transaction[];
+        transactions: Transaction[];
     };
 }
 

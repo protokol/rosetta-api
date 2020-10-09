@@ -88,7 +88,7 @@ export class BlockController extends Controller {
                     index: previousBlockHeight,
                     hash: previousBlockHash,
                 },
-                transaction: blockTransactions,
+                transactions: blockTransactions,
             },
         };
     }

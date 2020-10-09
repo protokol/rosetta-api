@@ -23,5 +23,4 @@ export const register = (server: Hapi.Server): void => {
         handler: (request: Hapi.Request) => controller.transaction(request),
         options: {},
     });
-
 };
