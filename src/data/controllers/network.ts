@@ -50,6 +50,11 @@ export class NetworkController extends Controller {
                         message: "transaction not found",
                         retriable: false,
                     },
+                    {
+                        code: 402,
+                        message: "wallet not found",
+                        retriable: false,
+                    },
                 ],
             },
         };
