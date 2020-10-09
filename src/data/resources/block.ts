@@ -33,3 +33,7 @@ export interface Transaction {
         },
     ];
 }
+
+export interface TransactionResource {
+    transaction: Transaction;
+}

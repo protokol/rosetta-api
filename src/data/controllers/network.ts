@@ -45,6 +45,11 @@ export class NetworkController extends Controller {
                         message: "network identifier is not supported",
                         retriable: false,
                     },
+                    {
+                        code: 401,
+                        message: "transaction not found",
+                        retriable: false,
+                    },
                 ],
             },
         };

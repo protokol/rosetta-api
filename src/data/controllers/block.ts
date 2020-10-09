@@ -3,7 +3,7 @@ import { Container, Contracts, Utils as AppUtils } from "@arkecosystem/core-kern
 import { Enums } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
 
-import { BlockResource, Transaction } from "../resources/block";
+import { BlockResource, Transaction, TransactionResource } from "../resources/block";
 import { ErrorType } from "../resources/network";
 
 @Container.injectable()
@@ -93,7 +93,63 @@ export class BlockController extends Controller {
         };
     }
 
-    public async transaction(request: Hapi.Request): Promise<any> {
-        return null;
+    public async transaction(request: Hapi.Request): Promise<TransactionResource | ErrorType> {
+        const block = await this.blockHistoryService.findOneByCriteriaJoinTransactions(
+            { height: request.payload.block_identifier.index },
+            {
+                id: request.payload.transaction_identifier.index,
+            },
+        );
+        const selectedTransaction = block?.transactions[0];
+        if (selectedTransaction) {
+            let type: string;
+            let address: string | undefined;
+            let amount: string | undefined;
+            if (selectedTransaction.type === Enums.TransactionType.Transfer) {
+                type = "transfer";
+                address = selectedTransaction.recipientId;
+                amount = selectedTransaction.amount.toFixed();
+            }
+            if (selectedTransaction.type === Enums.TransactionType.DelegateRegistration) {
+                type = "delegateRegistration";
+            }
+            if (selectedTransaction.type === Enums.TransactionType.Vote) {
+                type = "vote";
+            }
+            const transaction: Transaction = {
+                transaction_identifier: {
+                    hash: selectedTransaction.id!,
+                },
+                operations: [
+                    {
+                        operation_identifier: {
+                            index: 0,
+                        },
+                        type: type!,
+                        status: "SUCCESS",
+                    },
+                ],
+            };
+            if (address) {
+                transaction.operations[0].account = {
+                    address: address,
+                };
+            }
+            if (amount) {
+                transaction.operations[0].amount = {
+                    value: amount,
+                    currency: {
+                        symbol: "ARK",
+                        decimals: 8,
+                    },
+                };
+            }
+            return { transaction: transaction };
+        }
+        return {
+            code: 401,
+            message: "transaction not found",
+            retriable: false,
+        };
     }
 }
