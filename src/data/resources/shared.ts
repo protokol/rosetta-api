@@ -7,3 +7,9 @@ export interface BlockIdentifier {
     index: number;
     hash: string;
 }
+
+export interface Currency {
+    symbol: string;
+    decimals: number;
+    metadata: any;
+}

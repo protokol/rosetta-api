@@ -60,6 +60,9 @@ export class BlockController extends Controller {
                     currency: {
                         symbol: "ARK",
                         decimals: 8,
+                        metadata: {
+                            Issuer: "Satoshi",
+                        }
                     },
                 };
             }
@@ -141,6 +144,9 @@ export class BlockController extends Controller {
                     currency: {
                         symbol: "ARK",
                         decimals: 8,
+                        metadata: {
+                            Issuer: "Satoshi",
+                        }
                     },
                 };
             }

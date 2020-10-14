@@ -18,6 +18,7 @@ export interface NetworkOptionsResource {
         operation_statuses: OperationStatus[];
         operation_types: string[];
         errors: ErrorType[];
+        historical_balance_lookup: boolean;
     };
 }
 

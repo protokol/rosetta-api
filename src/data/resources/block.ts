@@ -1,4 +1,4 @@
-import { BlockIdentifier } from "./shared";
+import {BlockIdentifier, Currency} from "./shared";
 
 export interface BlockResource {
     block: {
@@ -25,10 +25,7 @@ export interface Transaction {
             };
             amount?: {
                 value: string;
-                currency: {
-                    symbol: string;
-                    decimals: number;
-                };
+                currency: Currency;
             };
         },
     ];

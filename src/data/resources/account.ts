@@ -1,4 +1,4 @@
-import { BlockIdentifier } from "./shared";
+import {BlockIdentifier, Currency} from "./shared";
 
 export interface AccountResource {
     block_identifier: BlockIdentifier;
@@ -7,10 +7,6 @@ export interface AccountResource {
 
 export interface Balance {
     value: string;
-    currency: {
-        symbol: string;
-        decimals: number;
-        metadata: any;
-    };
+    currency: Currency;
     metadata: any;
 }
