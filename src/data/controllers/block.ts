@@ -1,8 +1,10 @@
 import { Controller } from "@arkecosystem/core-api";
 import { Container, Contracts, Utils as AppUtils } from "@arkecosystem/core-kernel";
-import { Enums } from "@arkecosystem/crypto";
+import { Enums, Interfaces } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
 
+import { currency } from "../constants";
+import { Errors } from "../errors";
 import { BlockResource, Transaction, TransactionResource } from "../resources/block";
 import { ErrorType } from "../resources/network";
 
@@ -20,53 +22,7 @@ export class BlockController extends Controller {
         const blockHash = block!.data.id!;
         const blockTransactions: Transaction[] = [];
         for (const trx of block!.transactions) {
-            // currently supports only this 3 transaction types, because they are all in genesis block
-            let type: string;
-            let address: string | undefined;
-            let amount: string | undefined;
-            if (trx.type === Enums.TransactionType.Transfer) {
-                type = "transfer";
-                address = trx.recipientId;
-                amount = trx.amount.toFixed();
-            }
-            if (trx.type === Enums.TransactionType.DelegateRegistration) {
-                type = "delegateRegistration";
-            }
-            if (trx.type === Enums.TransactionType.Vote) {
-                type = "vote";
-            }
-            const transaction: Transaction = {
-                transaction_identifier: {
-                    hash: trx.id!,
-                },
-                operations: [
-                    {
-                        operation_identifier: {
-                            index: 0,
-                        },
-                        type: type!,
-                        status: "SUCCESS",
-                    },
-                ],
-            };
-            if (address) {
-                transaction.operations[0].account = {
-                    address: address,
-                };
-            }
-            if (amount) {
-                transaction.operations[0].amount = {
-                    value: amount,
-                    currency: {
-                        symbol: "ARK",
-                        decimals: 8,
-                        metadata: {
-                            Issuer: "Satoshi",
-                        },
-                    },
-                };
-            }
-            blockTransactions.push(transaction);
+            blockTransactions.push(this.buildTransactionInfo(trx));
         }
 
         let previousBlockHeight: number;
@@ -100,62 +56,58 @@ export class BlockController extends Controller {
         const block = await this.blockHistoryService.findOneByCriteriaJoinTransactions(
             { height: request.payload.block_identifier.index },
             {
-                id: request.payload.transaction_identifier.index,
+                id: request.payload.transaction_identifier.hash,
             },
         );
-        const selectedTransaction = block?.transactions[0];
-        if (selectedTransaction) {
-            let type: string;
-            let address: string | undefined;
-            let amount: string | undefined;
-            if (selectedTransaction.type === Enums.TransactionType.Transfer) {
-                type = "transfer";
-                address = selectedTransaction.recipientId;
-                amount = selectedTransaction.amount.toFixed();
-            }
-            if (selectedTransaction.type === Enums.TransactionType.DelegateRegistration) {
-                type = "delegateRegistration";
-            }
-            if (selectedTransaction.type === Enums.TransactionType.Vote) {
-                type = "vote";
-            }
-            const transaction: Transaction = {
-                transaction_identifier: {
-                    hash: selectedTransaction.id!,
-                },
-                operations: [
-                    {
-                        operation_identifier: {
-                            index: 0,
-                        },
-                        type: type!,
-                        status: "SUCCESS",
-                    },
-                ],
-            };
-            if (address) {
-                transaction.operations[0].account = {
-                    address: address,
-                };
-            }
-            if (amount) {
-                transaction.operations[0].amount = {
-                    value: amount,
-                    currency: {
-                        symbol: "ARK",
-                        decimals: 8,
-                        metadata: {
-                            Issuer: "Satoshi",
-                        },
-                    },
-                };
-            }
-            return { transaction: transaction };
+        const transaction = block?.transactions[0];
+        if (!transaction) {
+            return Errors.TX_NOT_FOUND;
         }
-        return {
-            code: 401,
-            message: "transaction not found",
-            retriable: false,
+
+        return { transaction: this.buildTransactionInfo(transaction) };
+    }
+
+    private buildTransactionInfo(transaction: Interfaces.ITransactionData): Transaction {
+        let type: string;
+        let address: string | undefined;
+        let amount: string | undefined;
+        if (transaction.type === Enums.TransactionType.Transfer) {
+            type = "transfer";
+            address = transaction.recipientId;
+            amount = transaction.amount.toFixed();
+        }
+        if (transaction.type === Enums.TransactionType.DelegateRegistration) {
+            type = "delegateRegistration";
+        }
+        if (transaction.type === Enums.TransactionType.Vote) {
+            type = "vote";
+        }
+        const transactionInfo: Transaction = {
+            transaction_identifier: {
+                hash: transaction.id!,
+            },
+            operations: [
+                {
+                    operation_identifier: {
+                        index: 0,
+                    },
+                    type: type!,
+                    status: "SUCCESS",
+                },
+            ],
         };
+        if (address) {
+            transactionInfo.operations[0].account = {
+                address: address,
+            };
+        }
+        if (amount) {
+            transactionInfo.operations[0].amount = {
+                value: amount,
+                currency,
+            };
+        }
+
+        return transactionInfo;
     }
 }

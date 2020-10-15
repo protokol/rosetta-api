@@ -3,6 +3,7 @@ import { Container, Contracts, Utils as AppUtils } from "@arkecosystem/core-kern
 import { Managers } from "@arkecosystem/crypto";
 
 import { blockchainName, rosettaImplementationVersion } from "../constants";
+import { Errors } from "../errors";
 import { NetworkIdentifiersResource, NetworkOptionsResource, NetworkStatusResources, Peer } from "../resources/network";
 
 const pluginVersion = require("../../../package.json").version;
@@ -39,23 +40,7 @@ export class NetworkController extends Controller {
                     },
                 ],
                 operation_types: ["transfer", "delegateRegistration", "vote"], //currently supported types for testing purpose
-                errors: [
-                    {
-                        code: 400,
-                        message: "network identifier is not supported",
-                        retriable: false,
-                    },
-                    {
-                        code: 401,
-                        message: "transaction not found",
-                        retriable: false,
-                    },
-                    {
-                        code: 402,
-                        message: "wallet not found",
-                        retriable: false,
-                    },
-                ],
+                errors: Object.values(Errors),
                 historical_balance_lookup: false,
             },
         };
