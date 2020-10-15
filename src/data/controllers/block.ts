@@ -13,15 +13,34 @@ export class BlockController extends Controller {
     @Container.inject(Container.Identifiers.BlockHistoryService)
     private readonly blockHistoryService!: Contracts.Shared.BlockHistoryService;
 
+    @Container.inject(Container.Identifiers.BlockchainService)
+    private readonly blockchain!: Contracts.Blockchain.Blockchain;
+
     public async block(request: Hapi.Request): Promise<BlockResource | ErrorType> {
-        const block = await this.blockHistoryService.findOneByCriteriaJoinTransactions(
-            { height: request.payload.block_identifier.index },
-            {},
-        );
-        const blockHeight = block!.data.height;
-        const blockHash = block!.data.id!;
+        const { block_identifier } = request.payload;
+        let block: Contracts.Shared.BlockDataWithTransactionData | undefined;
+        if (block_identifier.index) {
+            block = await this.blockHistoryService.findOneByCriteriaJoinTransactions(
+                { height: block_identifier.index },
+                {},
+            );
+        } else if (block_identifier.hash) {
+            block = await this.blockHistoryService.findOneByCriteriaJoinTransactions({ id: block_identifier.hash }, {});
+        } else {
+            block = await this.blockHistoryService.findOneByCriteriaJoinTransactions(
+                { height: this.blockchain.getLastHeight() },
+                {},
+            );
+        }
+
+        if (!block) {
+            return Errors.BLOCK_NOT_FOUND;
+        }
+
+        const blockHeight = block.data.height;
+        const blockHash = block.data.id!;
         const blockTransactions: Transaction[] = [];
-        for (const trx of block!.transactions) {
+        for (const trx of block.transactions) {
             blockTransactions.push(this.buildTransactionInfo(trx));
         }
 
@@ -42,7 +61,7 @@ export class BlockController extends Controller {
                     index: blockHeight,
                     hash: blockHash,
                 },
-                timestamp: AppUtils.formatTimestamp(block!.data.timestamp).unix * 1000,
+                timestamp: AppUtils.formatTimestamp(block.data.timestamp).unix * 1000,
                 parent_block_identifier: {
                     index: previousBlockHeight,
                     hash: previousBlockHash,
@@ -52,6 +71,7 @@ export class BlockController extends Controller {
         };
     }
 
+    // We probably dont need this method because all transactions are returned by method block
     public async transaction(request: Hapi.Request): Promise<TransactionResource | ErrorType> {
         const block = await this.blockHistoryService.findOneByCriteriaJoinTransactions(
             { height: request.payload.block_identifier.index },

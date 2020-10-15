@@ -6,13 +6,18 @@ export const Errors: Record<string, ErrorType> = {
         message: "network identifier is not supported",
         retriable: false,
     },
-    TX_NOT_FOUND: {
+    BLOCK_NOT_FOUND: {
         code: 401,
+        message: "block not found",
+        retriable: false,
+    },
+    TX_NOT_FOUND: {
+        code: 402,
         message: "transaction not found",
         retriable: false,
     },
     WALLET_NOT_FOUND: {
-        code: 402,
+        code: 403,
         message: "wallet not found",
         retriable: false,
     },
