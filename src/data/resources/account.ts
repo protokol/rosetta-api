@@ -1,4 +1,4 @@
-import {BlockIdentifier, Currency} from "./shared";
+import { BlockIdentifier, Currency } from "./shared";
 
 export interface AccountResource {
     block_identifier: BlockIdentifier;

@@ -62,7 +62,7 @@ export class BlockController extends Controller {
                         decimals: 8,
                         metadata: {
                             Issuer: "Satoshi",
-                        }
+                        },
                     },
                 };
             }
@@ -146,7 +146,7 @@ export class BlockController extends Controller {
                         decimals: 8,
                         metadata: {
                             Issuer: "Satoshi",
-                        }
+                        },
                     },
                 };
             }

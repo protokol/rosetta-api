@@ -56,7 +56,7 @@ export class NetworkController extends Controller {
                         retriable: false,
                     },
                 ],
-                historical_balance_lookup: false
+                historical_balance_lookup: false,
             },
         };
     }
