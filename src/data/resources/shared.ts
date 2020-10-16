@@ -13,3 +13,13 @@ export interface Currency {
     decimals: number;
     metadata: any;
 }
+
+export enum OperationType {
+    "TRANSFER" = "Transfer",
+    "FEE" = "Fee",
+}
+
+export enum OpStatus {
+    "SUCCESS" = "SUCCESS",
+    "FAILED" = "FAILED",
+}

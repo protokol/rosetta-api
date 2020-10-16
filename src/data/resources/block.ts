@@ -1,4 +1,4 @@
-import { BlockIdentifier, Currency } from "./shared";
+import { BlockIdentifier, Currency, OperationType } from "./shared";
 
 export interface BlockResource {
     block: {
@@ -9,26 +9,29 @@ export interface BlockResource {
     };
 }
 
+export interface Operation {
+    operation_identifier: {
+        index: number;
+    };
+    related_operations?: {
+        index: number;
+    }[];
+    type: OperationType;
+    status: string;
+    account?: {
+        address: string;
+    };
+    amount?: {
+        value: string;
+        currency: Currency;
+    };
+}
+
 export interface Transaction {
     transaction_identifier: {
         hash: string;
     };
-    operations: [
-        {
-            operation_identifier: {
-                index: number;
-            };
-            type: string;
-            status: string;
-            account?: {
-                address: string;
-            };
-            amount?: {
-                value: string;
-                currency: Currency;
-            };
-        },
-    ];
+    operations: Operation[];
 }
 
 export interface TransactionResource {

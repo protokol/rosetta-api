@@ -1,6 +1,6 @@
 // /network/list resources
 
-import { BlockIdentifier, NetworkIdentifier } from "./shared";
+import { BlockIdentifier, NetworkIdentifier, OperationType, OpStatus } from "./shared";
 
 export interface NetworkIdentifiersResource {
     network_identifiers: NetworkIdentifier[];
@@ -16,14 +16,14 @@ export interface NetworkOptionsResource {
     };
     allow: {
         operation_statuses: OperationStatus[];
-        operation_types: string[];
+        operation_types: OperationType[];
         errors: ErrorType[];
         historical_balance_lookup: boolean;
     };
 }
 
 export interface OperationStatus {
-    status: string;
+    status: OpStatus;
     successful: boolean;
 }
 

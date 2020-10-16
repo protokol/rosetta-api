@@ -1,20 +1,21 @@
 import { Controller } from "@arkecosystem/core-api";
 import { Container, Contracts, Utils as AppUtils } from "@arkecosystem/core-kernel";
-import { Enums, Interfaces } from "@arkecosystem/crypto";
+import { Identities, Interfaces } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
 
 import { currency } from "../constants";
 import { Errors } from "../errors";
-import { BlockResource, Transaction, TransactionResource } from "../resources/block";
+import { BlockResource, Operation, Transaction, TransactionResource } from "../resources/block";
 import { ErrorType } from "../resources/network";
+import { OperationType, OpStatus } from "../resources/shared";
 
 @Container.injectable()
 export class BlockController extends Controller {
     @Container.inject(Container.Identifiers.BlockHistoryService)
     private readonly blockHistoryService!: Contracts.Shared.BlockHistoryService;
 
-    @Container.inject(Container.Identifiers.BlockchainService)
-    private readonly blockchain!: Contracts.Blockchain.Blockchain;
+    @Container.inject(Container.Identifiers.StateStore)
+    private readonly stateStore!: Contracts.State.StateStore;
 
     public async block(request: Hapi.Request): Promise<BlockResource | ErrorType> {
         const { block_identifier } = request.payload;
@@ -28,7 +29,7 @@ export class BlockController extends Controller {
             block = await this.blockHistoryService.findOneByCriteriaJoinTransactions({ id: block_identifier.hash }, {});
         } else {
             block = await this.blockHistoryService.findOneByCriteriaJoinTransactions(
-                { height: this.blockchain.getLastHeight() },
+                { height: this.stateStore.getLastHeight() },
                 {},
             );
         }
@@ -40,8 +41,9 @@ export class BlockController extends Controller {
         const blockHeight = block.data.height;
         const blockHash = block.data.id!;
         const blockTransactions: Transaction[] = [];
+        const forger = Identities.Address.fromPublicKey(block.data.generatorPublicKey);
         for (const trx of block.transactions) {
-            blockTransactions.push(this.buildTransactionInfo(trx));
+            blockTransactions.push(this.buildTransactionInfo(trx, forger));
         }
 
         let previousBlockHeight: number;
@@ -84,50 +86,81 @@ export class BlockController extends Controller {
             return Errors.TX_NOT_FOUND;
         }
 
-        return { transaction: this.buildTransactionInfo(transaction) };
+        return {
+            transaction: this.buildTransactionInfo(
+                transaction,
+                Identities.Address.fromPublicKey(block!.data.generatorPublicKey),
+            ),
+        };
     }
 
-    private buildTransactionInfo(transaction: Interfaces.ITransactionData): Transaction {
-        let type: string;
-        let address: string | undefined;
-        let amount: string | undefined;
-        if (transaction.type === Enums.TransactionType.Transfer) {
-            type = "transfer";
-            address = transaction.recipientId;
-            amount = transaction.amount.toFixed();
-        }
-        if (transaction.type === Enums.TransactionType.DelegateRegistration) {
-            type = "delegateRegistration";
-        }
-        if (transaction.type === Enums.TransactionType.Vote) {
-            type = "vote";
-        }
+    private buildTransactionInfo(transaction: Interfaces.ITransactionData, forger: string): Transaction {
+        const sender = Identities.Address.fromPublicKey(transaction.senderPublicKey!);
+
         const transactionInfo: Transaction = {
             transaction_identifier: {
                 hash: transaction.id!,
             },
-            operations: [
-                {
-                    operation_identifier: {
-                        index: 0,
-                    },
-                    type: type!,
-                    status: "SUCCESS",
-                },
-            ],
+            operations: [],
         };
-        if (address) {
-            transactionInfo.operations[0].account = {
-                address: address,
-            };
-        }
-        if (amount) {
-            transactionInfo.operations[0].amount = {
-                value: amount,
-                currency,
-            };
+
+        // add fee operations
+        const fee = transaction.fee.toFixed();
+        transactionInfo.operations.push(...this.constructOperations(0, OperationType.FEE, fee, sender, forger, false));
+
+        // add transfer operations
+        const recipient = transaction.recipientId;
+        if (!transaction.amount.isZero() && recipient) {
+            const amount = transaction.amount.toFixed();
+            // if sender is genesis wallet -> prevent negative values
+            const isException =
+                this.stateStore.getGenesisBlock().transactions[0].data.senderPublicKey === transaction.senderPublicKey;
+            transactionInfo.operations.push(
+                ...this.constructOperations(2, OperationType.TRANSFER, amount, sender, recipient, isException),
+            );
         }
 
         return transactionInfo;
+    }
+
+    private constructOperations(
+        index: number,
+        type: OperationType,
+        value: string,
+        sender: string,
+        recipient: string,
+        isException: boolean,
+    ): Operation[] {
+        const operations: Operation[] = [];
+        operations.push({
+            operation_identifier: { index },
+            type,
+            status: OpStatus.SUCCESS,
+            amount: {
+                value,
+                currency,
+            },
+            account: {
+                address: recipient,
+            },
+        });
+
+        if (!isException) {
+            operations.push({
+                operation_identifier: { index: index + 1 },
+                related_operations: [{ index }],
+                type,
+                status: OpStatus.SUCCESS,
+                amount: {
+                    value: `-${value}`,
+                    currency,
+                },
+                account: {
+                    address: sender,
+                },
+            });
+        }
+
+        return operations;
     }
 }

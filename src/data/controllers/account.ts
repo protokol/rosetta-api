@@ -9,21 +9,26 @@ import { ErrorType } from "../resources/network";
 
 @Container.injectable()
 export class AccountController extends Controller {
-    @Container.inject(Container.Identifiers.BlockchainService)
-    private readonly blockchain!: Contracts.Blockchain.Blockchain;
+    @Container.inject(Container.Identifiers.StateStore)
+    private readonly stateStore!: Contracts.State.StateStore;
 
     @Container.inject(Container.Identifiers.WalletRepository)
     @Container.tagged("state", "blockchain")
     private readonly walletRepository!: Contracts.State.WalletRepository;
 
     public async balance(request: Hapi.Request): Promise<AccountResource | ErrorType> {
-        const lastBlock = this.blockchain.getLastBlock();
+        const lastBlock = this.stateStore.getLastBlock();
         const walletResource = this.walletRepository.findByAddress(request.payload.account_identifier.address);
 
         if (!walletResource) {
             return Errors.WALLET_NOT_FOUND;
         }
 
+        let value = walletResource.balance.toFixed();
+        // genesis wallet has negative balance -> instead return 0
+        if (this.stateStore.getGenesisBlock().transactions[0].data.senderPublicKey == walletResource.publicKey) {
+            value = "0";
+        }
         return {
             block_identifier: {
                 index: lastBlock.data.height,
@@ -31,7 +36,7 @@ export class AccountController extends Controller {
             },
             balances: [
                 {
-                    value: walletResource.balance.toFixed(),
+                    value,
                     currency,
                     metadata: {},
                 },

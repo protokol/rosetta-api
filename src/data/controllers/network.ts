@@ -5,6 +5,7 @@ import { Managers } from "@arkecosystem/crypto";
 import { blockchainName, rosettaImplementationVersion } from "../constants";
 import { Errors } from "../errors";
 import { NetworkIdentifiersResource, NetworkOptionsResource, NetworkStatusResources, Peer } from "../resources/network";
+import { OperationType, OpStatus } from "../resources/shared";
 
 const pluginVersion = require("../../../package.json").version;
 
@@ -31,15 +32,15 @@ export class NetworkController extends Controller {
             allow: {
                 operation_statuses: [
                     {
-                        status: "SUCCESS",
+                        status: OpStatus.SUCCESS,
                         successful: true,
                     },
                     {
-                        status: "FAILED",
+                        status: OpStatus.FAILED,
                         successful: false,
                     },
                 ],
-                operation_types: ["transfer", "delegateRegistration", "vote"], //currently supported types for testing purpose
+                operation_types: Object.values(OperationType),
                 errors: Object.values(Errors),
                 historical_balance_lookup: false,
             },
