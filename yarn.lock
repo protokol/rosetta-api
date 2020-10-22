@@ -14,7 +14,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-api@npm:^3.0.0-alpha.12, @arkecosystem/core-api@npm:^3.0.0-next.5, @arkecosystem/core-api@npm:next":
+"@arkecosystem/core-api@npm:^3.0.0-next.5, @arkecosystem/core-api@npm:next":
   version: 3.0.0-next.5
   resolution: "@arkecosystem/core-api@npm:3.0.0-next.5"
   dependencies:
@@ -121,7 +121,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-kernel@npm:^3.0.0-alpha.12, @arkecosystem/core-kernel@npm:^3.0.0-next.5":
+"@arkecosystem/core-kernel@npm:^3.0.0-next.5":
   version: 3.0.0-next.5
   resolution: "@arkecosystem/core-kernel@npm:3.0.0-next.5"
   dependencies:
@@ -396,7 +396,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/crypto@npm:^3.0.0-alpha.12, @arkecosystem/crypto@npm:^3.0.0-next.5":
+"@arkecosystem/crypto@npm:^3.0.0-next.5":
   version: 3.0.0-next.5
   resolution: "@arkecosystem/crypto@npm:3.0.0-next.5"
   dependencies:
@@ -2099,9 +2099,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@protokol/rosetta-api@workspace:packages/rosetta"
   dependencies:
-    "@arkecosystem/core-api": ^3.0.0-alpha.12
-    "@arkecosystem/core-kernel": ^3.0.0-alpha.12
-    "@arkecosystem/crypto": ^3.0.0-alpha.12
+    "@arkecosystem/core-api": ^3.0.0-next.5
+    "@arkecosystem/core-kernel": ^3.0.0-next.5
+    "@arkecosystem/crypto": ^3.0.0-next.5
     "@hapi/boom": ^9.0.0
     "@hapi/hapi": ^19.0.0
     "@hapi/joi": ^17.1.0
