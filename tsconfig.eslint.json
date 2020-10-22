@@ -25,5 +25,5 @@
 		"stripInternal": true,
 		"target": "es2019"
 	},
-	"exclude": ["dist", "**/*.spec.ts", "**/*.test.ts"]
+	"exclude": ["dist"]
 }

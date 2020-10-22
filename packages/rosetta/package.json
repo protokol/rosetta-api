@@ -1,0 +1,33 @@
+{
+	"name": "@protokol/rosetta-api",
+	"version": "1.0.0",
+	"description": "Ark plugin implementation of Rosetta Api",
+	"author": "Žan Kovač <zan@protokol.com>",
+	"license": "ISC",
+	"main": "dist/index",
+	"types": "dist/index",
+	"scripts": {
+		"build": "yarn clean && tsc",
+		"build:watch": "yarn build -w",
+		"clean": "rimraf .coverage dist tmp",
+		"prepublishOnly": "yarn build",
+		"pretest": "bash ../../scripts/pre-test.sh"
+	},
+	"dependencies": {
+		"@arkecosystem/core-api": "^3.0.0-alpha.12",
+		"@arkecosystem/core-kernel": "^3.0.0-alpha.12",
+		"@arkecosystem/crypto": "^3.0.0-alpha.12",
+		"@hapi/boom": "^9.0.0",
+		"@hapi/hapi": "^19.0.0",
+		"@hapi/joi": "^17.1.0",
+		"latest-version": "^5.1.0"
+	},
+	"devDependencies": {
+		"@types/hapi__boom": "^7.4.1",
+		"@types/hapi__joi": "^17.0.0",
+		"@types/ip": "^1.1.0",
+		"@types/semver": "^6.2.0",
+		"rimraf": "^3.0.2",
+		"typescript": "~4.0.2"
+	}
+}
