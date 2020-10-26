@@ -17,6 +17,7 @@ export interface Currency {
 export enum OperationType {
 	"TRANSFER" = "Transfer",
 	"FEE" = "Fee",
+	"MULTI_PAYMENT" = "Multi Payment",
 }
 
 export enum OpStatus {

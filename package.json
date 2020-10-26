@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@protokol/rosetta",
-	"description": "REPO DESCRIPTION",
+	"description": "Ark plugin implementation of Rosetta Api",
 	"engineStrict": true,
 	"engines": {
 		"node": "^12 || ^14",

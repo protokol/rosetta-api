@@ -1,6 +1,6 @@
 import { Controller } from "@arkecosystem/core-api";
 import { Container, Contracts, Utils as AppUtils } from "@arkecosystem/core-kernel";
-import { Identities, Interfaces } from "@arkecosystem/crypto";
+import { Enums, Identities, Interfaces } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
 
 import { currency } from "../constants";
@@ -45,6 +45,7 @@ export class BlockController extends Controller {
 		for (const trx of block.transactions) {
 			blockTransactions.push(this.buildTransactionInfo(trx, forger));
 		}
+		// TODO: add block reward tx: https://community.rosetta-api.org/t/block-rewards-without-transaction-hash/188/2
 
 		let previousBlockHeight: number;
 		let previousBlockHash: string;
@@ -104,20 +105,41 @@ export class BlockController extends Controller {
 			operations: [],
 		};
 
+		let operationIndex = 0;
 		// add fee operations
 		const fee = transaction.fee.toFixed();
-		transactionInfo.operations.push(...this.constructOperations(0, OperationType.FEE, fee, sender, forger, false));
+		transactionInfo.operations.push(
+			...this.constructOperations(operationIndex, OperationType.FEE, fee, sender, forger, false),
+		);
 
-		// add transfer operations
-		const recipient = transaction.recipientId;
-		if (!transaction.amount.isZero() && recipient) {
-			const amount = transaction.amount.toFixed();
-			// if sender is genesis wallet -> prevent negative values
-			const isException =
-				this.stateStore.getGenesisBlock().transactions[0].data.senderPublicKey === transaction.senderPublicKey;
-			transactionInfo.operations.push(
-				...this.constructOperations(2, OperationType.TRANSFER, amount, sender, recipient, isException),
-			);
+		switch (transaction.type) {
+			case Enums.TransactionType.Transfer:
+				transactionInfo.operations.push(
+					...this.constructOperations(
+						(operationIndex += 2),
+						OperationType.TRANSFER,
+						transaction.amount.toFixed(),
+						sender,
+						transaction.recipientId!,
+						this.stateStore.getGenesisBlock().transactions[0].data.senderPublicKey ===
+							transaction.senderPublicKey,
+					),
+				);
+				break;
+			case Enums.TransactionType.MultiPayment:
+				for (const payment of transaction.asset!.payments!) {
+					transactionInfo.operations.push(
+						...this.constructOperations(
+							(operationIndex += 2),
+							OperationType.MULTI_PAYMENT,
+							payment.amount.toFixed(),
+							sender,
+							payment.recipientId,
+							false,
+						),
+					);
+				}
+				break;
 		}
 
 		return transactionInfo;
