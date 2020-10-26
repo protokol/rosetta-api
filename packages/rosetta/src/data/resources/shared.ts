@@ -18,6 +18,7 @@ export enum OperationType {
 	"TRANSFER" = "Transfer",
 	"FEE" = "Fee",
 	"MULTI_PAYMENT" = "Multi Payment",
+	"BLOCK_REWARD" = "Block Reward",
 }
 
 export enum OpStatus {

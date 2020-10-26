@@ -45,7 +45,21 @@ export class BlockController extends Controller {
 		for (const trx of block.transactions) {
 			blockTransactions.push(this.buildTransactionInfo(trx, forger));
 		}
-		// TODO: add block reward tx: https://community.rosetta-api.org/t/block-rewards-without-transaction-hash/188/2
+		// add block reward
+		if (!block.data.reward.isZero()) {
+			blockTransactions.push({
+				transaction_identifier: {
+					hash: blockHash,
+				},
+				operations: this.constructOperations(
+					0,
+					OperationType.BLOCK_REWARD,
+					block.data.reward.toFixed(),
+					undefined,
+					forger,
+				),
+			});
+		}
 
 		let previousBlockHeight: number;
 		let previousBlockHash: string;
@@ -109,7 +123,7 @@ export class BlockController extends Controller {
 		// add fee operations
 		const fee = transaction.fee.toFixed();
 		transactionInfo.operations.push(
-			...this.constructOperations(operationIndex, OperationType.FEE, fee, sender, forger, false),
+			...this.constructOperations(operationIndex, OperationType.FEE, fee, sender, forger),
 		);
 
 		switch (transaction.type) {
@@ -119,10 +133,11 @@ export class BlockController extends Controller {
 						(operationIndex += 2),
 						OperationType.TRANSFER,
 						transaction.amount.toFixed(),
-						sender,
-						transaction.recipientId!,
 						this.stateStore.getGenesisBlock().transactions[0].data.senderPublicKey ===
-							transaction.senderPublicKey,
+							transaction.senderPublicKey
+							? undefined
+							: sender,
+						transaction.recipientId!,
 					),
 				);
 				break;
@@ -135,7 +150,6 @@ export class BlockController extends Controller {
 							payment.amount.toFixed(),
 							sender,
 							payment.recipientId,
-							false,
 						),
 					);
 				}
@@ -149,9 +163,8 @@ export class BlockController extends Controller {
 		index: number,
 		type: OperationType,
 		value: string,
-		sender: string,
+		sender: string | undefined,
 		recipient: string,
-		isException: boolean,
 	): Operation[] {
 		const operations: Operation[] = [];
 		operations.push({
@@ -167,7 +180,7 @@ export class BlockController extends Controller {
 			},
 		});
 
-		if (!isException) {
+		if (sender) {
 			operations.push({
 				operation_identifier: { index: index + 1 },
 				related_operations: [{ index }],
