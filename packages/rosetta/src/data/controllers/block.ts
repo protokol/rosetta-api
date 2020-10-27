@@ -5,9 +5,9 @@ import Hapi from "@hapi/hapi";
 
 import { currency } from "../constants";
 import { Errors } from "../errors";
-import { BlockResource, Operation, Transaction, TransactionResource } from "../resources/block";
+import { BlockResource } from "../resources/block";
 import { ErrorType } from "../resources/network";
-import { OperationType, OpStatus } from "../resources/shared";
+import { Operation, OperationType, OpStatus, Transaction, TransactionResource } from "../resources/shared";
 
 @Container.injectable()
 export class BlockController extends Controller {

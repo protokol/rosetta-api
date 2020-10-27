@@ -2,6 +2,7 @@ import Hapi from "@hapi/hapi";
 
 import * as Account from "./data/routes/account";
 import * as Block from "./data/routes/block";
+import * as Mempool from "./data/routes/mempool";
 import * as Network from "./data/routes/network";
 
 export = {
@@ -9,6 +10,7 @@ export = {
 		Network.register(server);
 		Block.register(server);
 		Account.register(server);
+		Mempool.register(server);
 	},
 	name: "Rosetta Api",
 	version: "1.0.0",

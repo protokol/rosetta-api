@@ -1,6 +1,11 @@
 // /network/list resources
 
-import { BlockIdentifier, NetworkIdentifier, OperationType, OpStatus } from "./shared";
+import { BlockIdentifier, OperationType, OpStatus } from "./shared";
+
+export interface NetworkIdentifier {
+	blockchain: string;
+	network: string;
+}
 
 export interface NetworkIdentifiersResource {
 	network_identifiers: NetworkIdentifier[];
