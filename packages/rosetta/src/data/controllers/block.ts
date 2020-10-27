@@ -1,13 +1,13 @@
 import { Controller } from "@arkecosystem/core-api";
 import { Container, Contracts, Utils as AppUtils } from "@arkecosystem/core-kernel";
-import { Enums, Identities, Interfaces } from "@arkecosystem/crypto";
+import { Identities } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
 
-import { currency } from "../constants";
 import { Errors } from "../errors";
 import { BlockResource } from "../resources/block";
 import { ErrorType } from "../resources/network";
-import { Operation, OperationType, OpStatus, Transaction, TransactionResource } from "../resources/shared";
+import { OperationType, Transaction, TransactionResource } from "../resources/shared";
+import { buildTransactionInfo, constructOperations } from "../utils";
 
 @Container.injectable()
 export class BlockController extends Controller {
@@ -42,8 +42,14 @@ export class BlockController extends Controller {
 		const blockHash = block.data.id!;
 		const blockTransactions: Transaction[] = [];
 		const forger = Identities.Address.fromPublicKey(block.data.generatorPublicKey);
-		for (const trx of block.transactions) {
-			blockTransactions.push(this.buildTransactionInfo(trx, forger));
+		for (const tx of block.transactions) {
+			blockTransactions.push(
+				buildTransactionInfo(
+					tx,
+					forger,
+					this.stateStore.getGenesisBlock().transactions[0].data.senderPublicKey === tx.senderPublicKey,
+				),
+			);
 		}
 		// add block reward
 		if (!block.data.reward.isZero()) {
@@ -51,8 +57,8 @@ export class BlockController extends Controller {
 				transaction_identifier: {
 					hash: blockHash,
 				},
-				operations: this.constructOperations(
-					0,
+				operations: constructOperations(
+					{ value: 0 },
 					OperationType.BLOCK_REWARD,
 					block.data.reward.toFixed(),
 					undefined,
@@ -102,100 +108,11 @@ export class BlockController extends Controller {
 		}
 
 		return {
-			transaction: this.buildTransactionInfo(
+			transaction: buildTransactionInfo(
 				transaction,
 				Identities.Address.fromPublicKey(block!.data.generatorPublicKey),
+				this.stateStore.getGenesisBlock().transactions[0].data.senderPublicKey === transaction.senderPublicKey,
 			),
 		};
-	}
-
-	private buildTransactionInfo(transaction: Interfaces.ITransactionData, forger: string): Transaction {
-		const sender = Identities.Address.fromPublicKey(transaction.senderPublicKey!);
-
-		const transactionInfo: Transaction = {
-			transaction_identifier: {
-				hash: transaction.id!,
-			},
-			operations: [],
-		};
-
-		let operationIndex = 0;
-		// add fee operations
-		const fee = transaction.fee.toFixed();
-		transactionInfo.operations.push(
-			...this.constructOperations(operationIndex, OperationType.FEE, fee, sender, forger),
-		);
-
-		switch (transaction.type) {
-			case Enums.TransactionType.Transfer:
-				transactionInfo.operations.push(
-					...this.constructOperations(
-						(operationIndex += 2),
-						OperationType.TRANSFER,
-						transaction.amount.toFixed(),
-						this.stateStore.getGenesisBlock().transactions[0].data.senderPublicKey ===
-							transaction.senderPublicKey
-							? undefined
-							: sender,
-						transaction.recipientId!,
-					),
-				);
-				break;
-			case Enums.TransactionType.MultiPayment:
-				for (const payment of transaction.asset!.payments!) {
-					transactionInfo.operations.push(
-						...this.constructOperations(
-							(operationIndex += 2),
-							OperationType.MULTI_PAYMENT,
-							payment.amount.toFixed(),
-							sender,
-							payment.recipientId,
-						),
-					);
-				}
-				break;
-		}
-
-		return transactionInfo;
-	}
-
-	private constructOperations(
-		index: number,
-		type: OperationType,
-		value: string,
-		sender: string | undefined,
-		recipient: string,
-	): Operation[] {
-		const operations: Operation[] = [];
-		operations.push({
-			operation_identifier: { index },
-			type,
-			status: OpStatus.SUCCESS,
-			amount: {
-				value,
-				currency,
-			},
-			account: {
-				address: recipient,
-			},
-		});
-
-		if (sender) {
-			operations.push({
-				operation_identifier: { index: index + 1 },
-				related_operations: [{ index }],
-				type,
-				status: OpStatus.SUCCESS,
-				amount: {
-					value: `-${value}`,
-					currency,
-				},
-				account: {
-					address: sender,
-				},
-			});
-		}
-
-		return operations;
 	}
 }
