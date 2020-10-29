@@ -10,6 +10,10 @@ export interface BlockIdentifier {
 	hash: string;
 }
 
+export interface Account {
+	address: string;
+}
+
 export interface Operation {
 	operation_identifier: {
 		index: number;
@@ -19,9 +23,7 @@ export interface Operation {
 	}[];
 	type: OperationType;
 	status: string;
-	account?: {
-		address: string;
-	};
+	account?: Account;
 	amount?: {
 		value: string;
 		currency: Currency;
