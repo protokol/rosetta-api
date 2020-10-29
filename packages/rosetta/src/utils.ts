@@ -1,7 +1,7 @@
 import { Enums, Identities, Interfaces } from "@arkecosystem/crypto";
 
 import { currency } from "./constants";
-import { Operation, OperationType, OpStatus, Transaction } from "./resources/shared";
+import { Operation, OperationType, OpStatus, Transaction } from "./interfaces";
 
 export const buildTransactionInfo = (
 	transaction: Interfaces.ITransactionData,

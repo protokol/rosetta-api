@@ -1,3 +1,10 @@
+export interface ErrorType {
+	code: number;
+	message: string;
+	retriable: boolean;
+	details?: any;
+}
+
 export interface BlockIdentifier {
 	index: number;
 	hash: string;

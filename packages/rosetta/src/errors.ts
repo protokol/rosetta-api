@@ -1,4 +1,4 @@
-import { ErrorType } from "./resources/network";
+import { ErrorType } from "./interfaces";
 
 export const Errors: Record<string, ErrorType> = {
 	IDENTIFIER_NOT_SUPPORTED: {

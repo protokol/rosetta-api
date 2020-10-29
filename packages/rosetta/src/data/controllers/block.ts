@@ -3,11 +3,10 @@ import { Container, Contracts, Utils as AppUtils } from "@arkecosystem/core-kern
 import { Identities } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
 
-import { Errors } from "../errors";
+import { Errors } from "../../errors";
+import { ErrorType, OperationType, Transaction, TransactionResource } from "../../interfaces";
+import { buildTransactionInfo, constructOperations } from "../../utils";
 import { BlockResource } from "../resources/block";
-import { ErrorType } from "../resources/network";
-import { OperationType, Transaction, TransactionResource } from "../resources/shared";
-import { buildTransactionInfo, constructOperations } from "../utils";
 
 @Container.injectable()
 export class BlockController extends Controller {

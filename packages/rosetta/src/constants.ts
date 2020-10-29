@@ -1,4 +1,4 @@
-import { Currency } from "./resources/shared";
+import { Currency } from "./interfaces";
 
 export const blockchainName = "ark";
 

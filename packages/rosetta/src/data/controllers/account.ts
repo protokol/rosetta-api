@@ -2,10 +2,10 @@ import { Controller } from "@arkecosystem/core-api";
 import { Container, Contracts } from "@arkecosystem/core-kernel";
 import Hapi from "@hapi/hapi";
 
-import { currency } from "../constants";
-import { Errors } from "../errors";
+import { currency } from "../../constants";
+import { Errors } from "../../errors";
+import { ErrorType } from "../../interfaces";
 import { AccountResource } from "../resources/account";
-import { ErrorType } from "../resources/network";
 
 @Container.injectable()
 export class AccountController extends Controller {

@@ -1,4 +1,4 @@
-import { BlockIdentifier, Currency, OperationType, Transaction } from "./shared";
+import { BlockIdentifier, Transaction } from "../../interfaces";
 
 export interface BlockResource {
 	block: {

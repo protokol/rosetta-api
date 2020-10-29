@@ -1,6 +1,6 @@
-// /network/list resources
+import { BlockIdentifier, ErrorType, OperationType, OpStatus } from "../../interfaces";
 
-import { BlockIdentifier, OperationType, OpStatus } from "./shared";
+// /network/list resources
 
 export interface NetworkIdentifier {
 	blockchain: string;
@@ -30,13 +30,6 @@ export interface NetworkOptionsResource {
 export interface OperationStatus {
 	status: OpStatus;
 	successful: boolean;
-}
-
-export interface ErrorType {
-	code: number;
-	message: string;
-	retriable: boolean;
-	details?: any;
 }
 
 // /network/status resources

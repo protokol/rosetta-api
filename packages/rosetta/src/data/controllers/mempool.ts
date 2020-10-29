@@ -2,11 +2,10 @@ import { Controller } from "@arkecosystem/core-api";
 import { Container, Contracts } from "@arkecosystem/core-kernel";
 import Hapi from "@hapi/hapi";
 
-import { Errors } from "../errors";
+import { Errors } from "../../errors";
+import { ErrorType, TransactionIdentifier, TransactionResource } from "../../interfaces";
+import { buildTransactionInfo } from "../../utils";
 import { TransactionIdentifiers } from "../resources/mempool";
-import { ErrorType } from "../resources/network";
-import { TransactionIdentifier, TransactionResource } from "../resources/shared";
-import { buildTransactionInfo } from "../utils";
 
 @Container.injectable()
 export class MempoolController extends Controller {

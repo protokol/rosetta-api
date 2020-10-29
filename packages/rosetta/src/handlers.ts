@@ -1,5 +1,6 @@
 import Hapi from "@hapi/hapi";
 
+import * as Construction from "./construction/routes/construction";
 import * as Account from "./data/routes/account";
 import * as Block from "./data/routes/block";
 import * as Mempool from "./data/routes/mempool";
@@ -11,6 +12,7 @@ export = {
 		Block.register(server);
 		Account.register(server);
 		Mempool.register(server);
+		Construction.register(server);
 	},
 	name: "Rosetta Api",
 	version: "1.0.0",

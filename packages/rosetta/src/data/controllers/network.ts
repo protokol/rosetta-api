@@ -2,10 +2,10 @@ import { Controller } from "@arkecosystem/core-api";
 import { Container, Contracts, Utils as AppUtils } from "@arkecosystem/core-kernel";
 import { Managers } from "@arkecosystem/crypto";
 
-import { blockchainName, rosettaImplementationVersion } from "../constants";
-import { Errors } from "../errors";
+import { blockchainName, rosettaImplementationVersion } from "../../constants";
+import { Errors } from "../../errors";
+import { OperationType, OpStatus } from "../../interfaces";
 import { NetworkIdentifiersResource, NetworkOptionsResource, NetworkStatusResources, Peer } from "../resources/network";
-import { OperationType, OpStatus } from "../resources/shared";
 
 const pluginVersion = require("../../../package.json").version;
 
