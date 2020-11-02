@@ -60,23 +60,8 @@ export const constructOperations = (
 	recipient: string | undefined,
 ): Operation[] => {
 	const operations: Operation[] = [];
-	if (recipient) {
-		operations.push({
-			operation_identifier: { index: index.value++ },
-			type,
-			status: OpStatus.SUCCESS,
-			amount: {
-				value,
-				currency,
-			},
-			account: {
-				address: recipient,
-			},
-		});
-	}
-
 	if (sender) {
-		const operation: Operation = {
+		operations.push({
 			operation_identifier: { index: index.value++ },
 			type,
 			status: OpStatus.SUCCESS,
@@ -87,8 +72,23 @@ export const constructOperations = (
 			account: {
 				address: sender,
 			},
+		});
+	}
+
+	if (recipient) {
+		const operation: Operation = {
+			operation_identifier: { index: index.value++ },
+			type,
+			status: OpStatus.SUCCESS,
+			amount: {
+				value,
+				currency,
+			},
+			account: {
+				address: recipient,
+			},
 		};
-		if (recipient) {
+		if (sender) {
 			operation.related_operations = [{ index: index.value - 2 }];
 		}
 		operations.push(operation);

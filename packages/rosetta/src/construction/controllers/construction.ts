@@ -4,8 +4,8 @@ import { Identities } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
 
 import { Errors } from "../../errors";
-import { ErrorType } from "../../interfaces";
-import { DeriveResource } from "../resources/construction";
+import { ErrorType, Operation } from "../../interfaces";
+import { DeriveResource, Options, PreprocessResource } from "../resources/construction";
 
 @Container.injectable()
 export class ConstructionController extends Controller {
@@ -24,5 +24,25 @@ export class ConstructionController extends Controller {
 
 		const address = Identities.Address.fromPublicKey(hex_bytes);
 		return { account_identifier: { address } };
+	}
+
+	public async preprocess(request: Hapi.Request): Promise<PreprocessResource | ErrorType> {
+		const { operations, metadata }: { operations: Operation[]; metadata: any } = request.payload;
+
+		if (operations.length !== 2) {
+			return Errors.INVALID_OPERATIONS;
+		}
+
+		const options = {} as Options;
+		if (metadata?.fee) {
+			options.fee = metadata.fee;
+		}
+
+		options.sender = operations[0].account!.address;
+		options.reciever = operations[1].account!.address;
+		options.type = operations[0].type;
+		options.value = operations[1].amount!.value;
+
+		return { options };
 	}
 }

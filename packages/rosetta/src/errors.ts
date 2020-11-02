@@ -31,4 +31,9 @@ export const Errors: Record<string, ErrorType> = {
 		message: "invalid pubkey hex bytes",
 		retriable: false,
 	},
+	INVALID_OPERATIONS: {
+		code: 406,
+		message: "invalid number of operations",
+		retriable: false,
+	},
 };

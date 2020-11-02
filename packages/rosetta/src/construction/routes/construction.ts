@@ -16,4 +16,15 @@ export const register = (server: Hapi.Server): void => {
 			// },
 		},
 	});
+
+	server.route({
+		method: "POST",
+		path: "/construction/preprocess",
+		handler: (request: Hapi.Request) => controller.preprocess(request),
+		options: {
+			// validate: {
+			//     payload: {},
+			// },
+		},
+	});
 };
