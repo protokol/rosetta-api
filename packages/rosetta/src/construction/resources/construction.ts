@@ -1,4 +1,4 @@
-import { Account, OperationType } from "../../interfaces";
+import { Account, Operation, OperationType } from "../../interfaces";
 
 export interface DeriveResource {
 	account_identifier: Account;
@@ -35,4 +35,9 @@ export interface SigningPayload {
 export interface PayloadsResource {
 	unsigned_transaction: string;
 	payloads: SigningPayload[];
+}
+
+export interface ParseResource {
+	operations: Operation[];
+	account_identifier_signers: Account[];
 }

@@ -5,12 +5,14 @@ import { Identities, Transactions, Utils } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
 
 import { Errors } from "../../errors";
-import { ErrorType, Operation } from "../../interfaces";
+import { Account, ErrorType, Operation, OperationType } from "../../interfaces";
+import { constructOperations } from "../../utils";
 import {
 	DeriveResource,
 	Metadata,
 	MetadataResource,
 	Options,
+	ParseResource,
 	PayloadsResource,
 	PreprocessResource,
 } from "../resources/construction";
@@ -89,11 +91,38 @@ export class ConstructionController extends Controller {
 		}
 
 		const unsignedTx = Transactions.Utils.toBytes(transaction.data).toString("hex");
-		const hashTx = Transactions.Utils.toHash(transaction.data).toString("hex");
+		const hashTx = Transactions.Utils.toHash(transaction.data, { excludeSignature: true }).toString("hex");
 
 		return {
 			unsigned_transaction: unsignedTx,
 			payloads: [{ account_identifier: { address: sender }, hex_bytes: hashTx }],
+		};
+	}
+
+	public async parse(request: Hapi.Request): Promise<ParseResource | ErrorType> {
+		const { transaction: hexTx, signed }: { transaction: string; signed: boolean } = request.payload;
+
+		const transaction = Transactions.TransactionFactory.fromBytesUnsafe(Buffer.from(hexTx, "hex"));
+		const {
+			data: { senderPublicKey, amount, recipientId },
+		} = transaction;
+		const sender = Identities.Address.fromPublicKey(senderPublicKey!);
+
+		const operations = constructOperations(
+			{ value: 0 },
+			OperationType.TRANSFER,
+			amount.toFixed(),
+			sender,
+			recipientId,
+		);
+		const signers: Account[] = [];
+		if (signed) {
+			signers.push({ address: sender });
+		}
+
+		return {
+			operations,
+			account_identifier_signers: signers,
 		};
 	}
 
