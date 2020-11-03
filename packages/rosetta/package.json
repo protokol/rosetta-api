@@ -14,6 +14,7 @@
 		"pretest": "bash ../../scripts/pre-test.sh"
 	},
 	"dependencies": {
+		"@arkecosystem/client": "^1.1.4",
 		"@arkecosystem/core-api": "^3.0.0-next.5",
 		"@arkecosystem/core-kernel": "^3.0.0-next.5",
 		"@arkecosystem/crypto": "^3.0.0-next.5",

@@ -27,4 +27,15 @@ export const register = (server: Hapi.Server): void => {
 			// },
 		},
 	});
+
+	server.route({
+		method: "POST",
+		path: "/construction/metadata",
+		handler: (request: Hapi.Request) => controller.metadata(request),
+		options: {
+			// validate: {
+			//     payload: {},
+			// },
+		},
+	});
 };

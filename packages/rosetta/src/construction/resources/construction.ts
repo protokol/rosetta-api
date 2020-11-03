@@ -15,3 +15,11 @@ export interface Options {
 export interface PreprocessResource {
 	options: Options;
 }
+
+export interface Metadata {
+	nonce: string;
+}
+
+export interface MetadataResource {
+	metadata: Metadata;
+}

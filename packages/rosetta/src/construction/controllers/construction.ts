@@ -1,14 +1,17 @@
+import { Connection } from "@arkecosystem/client";
 import { Controller } from "@arkecosystem/core-api";
 import { Container } from "@arkecosystem/core-kernel";
-import { Identities } from "@arkecosystem/crypto";
+import { Identities, Utils } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
 
 import { Errors } from "../../errors";
 import { ErrorType, Operation } from "../../interfaces";
-import { DeriveResource, Options, PreprocessResource } from "../resources/construction";
+import { DeriveResource, MetadataResource, Options, PreprocessResource } from "../resources/construction";
 
 @Container.injectable()
 export class ConstructionController extends Controller {
+	private client: Connection | undefined;
+
 	public async derive(request: Hapi.Request): Promise<DeriveResource | ErrorType> {
 		const {
 			public_key: { hex_bytes, curve_type },
@@ -44,5 +47,25 @@ export class ConstructionController extends Controller {
 		options.value = operations[1].amount!.value;
 
 		return { options };
+	}
+
+	public async metadata(request: Hapi.Request): Promise<MetadataResource | ErrorType> {
+		const { options }: PreprocessResource = request.payload;
+
+		const {
+			body: { data: wallet },
+		} = await this.getClient().api("wallets").get(options.sender);
+
+		const metadata = { nonce: Utils.BigNumber.make(wallet.nonce).plus(1).toFixed() };
+
+		return { metadata };
+	}
+
+	private getClient(): Connection {
+		if (!this.client) {
+			this.client = new Connection("http://localhost:4003/api"); // TODO get url from config
+		}
+
+		return this.client;
 	}
 }
