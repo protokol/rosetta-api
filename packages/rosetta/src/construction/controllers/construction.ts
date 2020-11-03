@@ -1,12 +1,19 @@
 import { Connection } from "@arkecosystem/client";
 import { Controller } from "@arkecosystem/core-api";
 import { Container } from "@arkecosystem/core-kernel";
-import { Identities, Utils } from "@arkecosystem/crypto";
+import { Identities, Transactions, Utils } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
 
 import { Errors } from "../../errors";
 import { ErrorType, Operation } from "../../interfaces";
-import { DeriveResource, MetadataResource, Options, PreprocessResource } from "../resources/construction";
+import {
+	DeriveResource,
+	Metadata,
+	MetadataResource,
+	Options,
+	PayloadsResource,
+	PreprocessResource,
+} from "../resources/construction";
 
 @Container.injectable()
 export class ConstructionController extends Controller {
@@ -56,9 +63,38 @@ export class ConstructionController extends Controller {
 			body: { data: wallet },
 		} = await this.getClient().api("wallets").get(options.sender);
 
-		const metadata = { nonce: Utils.BigNumber.make(wallet.nonce).plus(1).toFixed() };
+		const metadata = {
+			nonce: Utils.BigNumber.make(wallet.nonce).plus(1).toFixed(),
+			fee: options.fee,
+			senderPublicKey: wallet.publicKey,
+		};
 
 		return { metadata };
+	}
+
+	public async payloads(request: Hapi.Request): Promise<PayloadsResource | ErrorType> {
+		const { operations, metadata }: { operations: Operation[]; metadata: Metadata } = request.payload;
+
+		const sender = operations[0].account!.address;
+		const reciever = operations[1].account!.address;
+		const value = operations[1].amount!.value;
+
+		let transaction = Transactions.BuilderFactory.transfer()
+			.nonce(metadata.nonce)
+			.recipientId(reciever)
+			.amount(value)
+			.senderPublicKey(metadata.senderPublicKey);
+		if (metadata.fee) {
+			transaction = transaction.fee(metadata.fee);
+		}
+
+		const unsignedTx = Transactions.Utils.toBytes(transaction.data).toString("hex");
+		const hashTx = Transactions.Utils.toHash(transaction.data).toString("hex");
+
+		return {
+			unsigned_transaction: unsignedTx,
+			payloads: [{ account_identifier: { address: sender }, hex_bytes: hashTx }],
+		};
 	}
 
 	private getClient(): Connection {
