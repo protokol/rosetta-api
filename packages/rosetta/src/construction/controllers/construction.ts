@@ -10,6 +10,7 @@ import { constructOperations } from "../../utils";
 import {
 	CombineResource,
 	DeriveResource,
+	HashResource,
 	Metadata,
 	MetadataResource,
 	Options,
@@ -139,6 +140,14 @@ export class ConstructionController extends Controller {
 		const signedTx = Transactions.Utils.toBytes(transaction.data).toString("hex");
 
 		return { signed_transaction: signedTx };
+	}
+
+	public async hash(request: Hapi.Request): Promise<HashResource | ErrorType> {
+		const { signed_transaction: signedTx }: { signed_transaction: string } = request.payload;
+
+		const transaction = Transactions.TransactionFactory.fromHex(signedTx);
+
+		return { transaction_identifier: { hash: transaction.id! } };
 	}
 
 	private getClient(): Connection {

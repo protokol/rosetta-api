@@ -1,4 +1,4 @@
-import { Account, Operation, OperationType } from "../../interfaces";
+import { Account, Operation, OperationType, TransactionIdentifier } from "../../interfaces";
 
 export interface DeriveResource {
 	account_identifier: Account;
@@ -51,4 +51,8 @@ export interface Signature {
 
 export interface CombineResource {
 	signed_transaction: string;
+}
+
+export interface HashResource {
+	transaction_identifier: TransactionIdentifier;
 }
