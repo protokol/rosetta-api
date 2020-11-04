@@ -10,16 +10,17 @@ export interface Options {
 	reciever: string;
 	value: string;
 	type: OperationType;
+	senderPublicKey: string;
 }
 
 export interface PreprocessResource {
 	options: Options;
+	required_public_keys: Account[];
 }
 
 export interface Metadata {
 	nonce: string;
 	fee?: string;
-	senderPublicKey: string;
 }
 
 export interface MetadataResource {
@@ -29,7 +30,7 @@ export interface MetadataResource {
 export interface SigningPayload {
 	account_identifier: Account;
 	hex_bytes: string;
-	signature_type?: string;
+	signature_type: string;
 }
 
 export interface PayloadsResource {

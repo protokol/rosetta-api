@@ -58,13 +58,16 @@ export const constructOperations = (
 	value: string,
 	sender: string | undefined,
 	recipient: string | undefined,
+	addStatus = true,
 ): Operation[] => {
 	const operations: Operation[] = [];
+	const status = addStatus ? OpStatus.SUCCESS : undefined;
+
 	if (sender) {
 		operations.push({
 			operation_identifier: { index: index.value++ },
 			type,
-			status: OpStatus.SUCCESS,
+			status,
 			amount: {
 				value: `-${value}`,
 				currency,
@@ -79,7 +82,7 @@ export const constructOperations = (
 		const operation: Operation = {
 			operation_identifier: { index: index.value++ },
 			type,
-			status: OpStatus.SUCCESS,
+			status,
 			amount: {
 				value,
 				currency,

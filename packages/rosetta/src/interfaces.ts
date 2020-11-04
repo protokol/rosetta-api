@@ -22,7 +22,7 @@ export interface Operation {
 		index: number;
 	}[];
 	type: OperationType;
-	status: string;
+	status?: string;
 	account?: Account;
 	amount?: {
 		value: string;
@@ -46,7 +46,7 @@ export interface TransactionResource {
 export interface Currency {
 	symbol: string;
 	decimals: number;
-	metadata: any;
+	metadata?: any;
 }
 
 export enum OperationType {

@@ -58,7 +58,7 @@ export class ConstructionController extends Controller {
 		options.type = operations[0].type;
 		options.value = operations[1].amount!.value;
 
-		return { options };
+		return { options, required_public_keys: [{ address: options.sender }] };
 	}
 
 	public async metadata(request: Hapi.Request): Promise<MetadataResource | ErrorType> {
@@ -71,14 +71,17 @@ export class ConstructionController extends Controller {
 		const metadata = {
 			nonce: Utils.BigNumber.make(wallet.nonce).plus(1).toFixed(),
 			fee: options.fee,
-			senderPublicKey: wallet.publicKey,
 		};
 
 		return { metadata };
 	}
 
 	public async payloads(request: Hapi.Request): Promise<PayloadsResource | ErrorType> {
-		const { operations, metadata }: { operations: Operation[]; metadata: Metadata } = request.payload;
+		const {
+			operations,
+			metadata,
+			public_keys: publicKeys,
+		}: { operations: Operation[]; metadata: Metadata; public_keys: any } = request.payload;
 
 		const sender = operations[0].account!.address;
 		const reciever = operations[1].account!.address;
@@ -88,7 +91,7 @@ export class ConstructionController extends Controller {
 			.nonce(metadata.nonce)
 			.recipientId(reciever)
 			.amount(value)
-			.senderPublicKey(metadata.senderPublicKey);
+			.senderPublicKey(publicKeys[0].hex_bytes);
 		if (metadata.fee) {
 			transaction = transaction.fee(metadata.fee);
 		}
@@ -98,7 +101,7 @@ export class ConstructionController extends Controller {
 
 		return {
 			unsigned_transaction: unsignedTx,
-			payloads: [{ account_identifier: { address: sender }, hex_bytes: hashTx }],
+			payloads: [{ account_identifier: { address: sender }, hex_bytes: hashTx, signature_type: "ecdsa" }],
 		};
 	}
 
@@ -117,6 +120,7 @@ export class ConstructionController extends Controller {
 			amount.toFixed(),
 			sender,
 			recipientId,
+			false,
 		);
 		const signers: Account[] = [];
 		if (signed) {
