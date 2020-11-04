@@ -41,3 +41,14 @@ export interface ParseResource {
 	operations: Operation[];
 	account_identifier_signers: Account[];
 }
+
+export interface Signature {
+	hex_bytes: string;
+	signature_type: string;
+	public_key: string;
+	signing_payload: SigningPayload;
+}
+
+export interface CombineResource {
+	signed_transaction: string;
+}

@@ -8,6 +8,7 @@ import { Errors } from "../../errors";
 import { Account, ErrorType, Operation, OperationType } from "../../interfaces";
 import { constructOperations } from "../../utils";
 import {
+	CombineResource,
 	DeriveResource,
 	Metadata,
 	MetadataResource,
@@ -15,6 +16,7 @@ import {
 	ParseResource,
 	PayloadsResource,
 	PreprocessResource,
+	Signature,
 } from "../resources/construction";
 
 @Container.injectable()
@@ -124,6 +126,19 @@ export class ConstructionController extends Controller {
 			operations,
 			account_identifier_signers: signers,
 		};
+	}
+
+	public async combine(request: Hapi.Request): Promise<CombineResource | ErrorType> {
+		const {
+			unsigned_transaction: unsignedTx,
+			signatures,
+		}: { unsigned_transaction: string; signatures: Signature[] } = request.payload;
+
+		const transaction = Transactions.TransactionFactory.fromBytesUnsafe(Buffer.from(unsignedTx, "hex"));
+		transaction.data.signature = signatures[0].hex_bytes;
+		const signedTx = Transactions.Utils.toBytes(transaction.data).toString("hex");
+
+		return { signed_transaction: signedTx };
 	}
 
 	private getClient(): Connection {

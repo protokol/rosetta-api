@@ -60,4 +60,15 @@ export const register = (server: Hapi.Server): void => {
 			// },
 		},
 	});
+
+	server.route({
+		method: "POST",
+		path: "/construction/combine",
+		handler: (request: Hapi.Request) => controller.combine(request),
+		options: {
+			// validate: {
+			//     payload: {},
+			// },
+		},
+	});
 };
