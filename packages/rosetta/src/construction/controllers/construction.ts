@@ -150,6 +150,23 @@ export class ConstructionController extends Controller {
 		return { transaction_identifier: { hash: transaction.id! } };
 	}
 
+	public async submit(request: Hapi.Request): Promise<HashResource | ErrorType> {
+		const { signed_transaction: signedTx }: { signed_transaction: string } = request.payload;
+
+		const transaction = Transactions.TransactionFactory.fromHex(signedTx);
+		const {
+			body: { data },
+		} = await this.getClient()
+			.api("transactions")
+			.create({ transactions: [transaction.toJson()] });
+
+		if (data.invalid.length > 0) {
+			return Errors.INVALID_TRANSACTION;
+		}
+
+		return { transaction_identifier: { hash: data.broadcast[0] || data.accept[0] } };
+	}
+
 	private getClient(): Connection {
 		if (!this.client) {
 			this.client = new Connection("http://localhost:4003/api"); // TODO get url from config

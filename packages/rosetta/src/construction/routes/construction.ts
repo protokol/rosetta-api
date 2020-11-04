@@ -82,4 +82,15 @@ export const register = (server: Hapi.Server): void => {
 			// },
 		},
 	});
+
+	server.route({
+		method: "POST",
+		path: "/construction/submit",
+		handler: (request: Hapi.Request) => controller.submit(request),
+		options: {
+			// validate: {
+			//     payload: {},
+			// },
+		},
+	});
 };

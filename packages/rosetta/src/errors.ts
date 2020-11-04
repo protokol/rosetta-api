@@ -36,4 +36,9 @@ export const Errors: Record<string, ErrorType> = {
 		message: "invalid number of operations",
 		retriable: false,
 	},
+	INVALID_TRANSACTION: {
+		code: 407,
+		message: "invalid transaction",
+		retriable: false,
+	},
 };
