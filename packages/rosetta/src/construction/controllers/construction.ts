@@ -3,6 +3,7 @@ import { Controller } from "@arkecosystem/core-api";
 import { Container } from "@arkecosystem/core-kernel";
 import { Identities, Transactions, Utils } from "@arkecosystem/crypto";
 import Hapi from "@hapi/hapi";
+import { secp256k1 } from "bcrypto";
 
 import { Errors } from "../../errors";
 import { Account, ErrorType, Operation, OperationType } from "../../interfaces";
@@ -138,9 +139,10 @@ export class ConstructionController extends Controller {
 			unsigned_transaction: unsignedTx,
 			signatures,
 		}: { unsigned_transaction: string; signatures: Signature[] } = request.payload;
+		const signatureExport = secp256k1.signatureExport(Buffer.from(signatures[0].hex_bytes, "hex")).toString("hex");
 
 		const transaction = Transactions.TransactionFactory.fromBytesUnsafe(Buffer.from(unsignedTx, "hex"));
-		transaction.data.signature = signatures[0].hex_bytes;
+		transaction.data.signature = signatureExport;
 		const signedTx = Transactions.Utils.toBytes(transaction.data).toString("hex");
 
 		return { signed_transaction: signedTx };

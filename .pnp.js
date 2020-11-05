@@ -2399,6 +2399,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/hapi__joi", "npm:17.1.6"],
             ["@types/ip", "npm:1.1.0"],
             ["@types/semver", "npm:6.2.2"],
+            ["bcrypto", "npm:5.3.0"],
             ["latest-version", "npm:5.1.0"],
             ["rimraf", "npm:3.0.2"],
             ["typescript", "patch:typescript@npm%3A4.0.3#builtin<compat/typescript>::version=4.0.3&hash=5bf698"]
