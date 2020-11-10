@@ -41,4 +41,9 @@ export const Errors: Record<string, ErrorType> = {
 		message: "invalid transaction",
 		retriable: false,
 	},
+	MISSING_PUBKEY: {
+		code: 408,
+		message: "missing public key that is required to build a transaction",
+		retriable: false,
+	},
 };

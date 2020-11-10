@@ -84,6 +84,10 @@ export class ConstructionController extends Controller {
 			public_keys: publicKeys,
 		}: { operations: Operation[]; metadata: Metadata; public_keys: any } = request.payload;
 
+		if (!publicKeys?.[0].hex_bytes) {
+			return Errors.MISSING_PUBKEY;
+		}
+
 		const sender = operations[0].account!.address;
 		const reciever = operations[1].account!.address;
 		const value = operations[1].amount!.value;
