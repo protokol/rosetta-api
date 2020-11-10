@@ -1,5 +1,7 @@
 import Hapi from "@hapi/hapi";
+import Joi from "@hapi/joi";
 
+import { block_identifier, block_identifier_required, network_identifier, transaction_identifier } from "../../schemas";
 import { BlockController } from "../controllers/block";
 
 export const register = (server: Hapi.Server): void => {
@@ -11,9 +13,9 @@ export const register = (server: Hapi.Server): void => {
 		path: "/block",
 		handler: (request: Hapi.Request) => controller.block(request),
 		options: {
-			// validate: {
-			//     payload: {},
-			// },
+			validate: {
+				payload: Joi.object({ block_identifier, network_identifier }),
+			},
 		},
 	});
 
@@ -21,6 +23,14 @@ export const register = (server: Hapi.Server): void => {
 		method: "POST",
 		path: "/block/transaction",
 		handler: (request: Hapi.Request) => controller.transaction(request),
-		options: {},
+		options: {
+			validate: {
+				payload: Joi.object({
+					block_identifier: block_identifier_required,
+					network_identifier,
+					transaction_identifier,
+				}),
+			},
+		},
 	});
 };

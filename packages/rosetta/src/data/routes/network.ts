@@ -1,6 +1,7 @@
 import Hapi from "@hapi/hapi";
 import Joi from "@hapi/joi";
 
+import { metadata, network_identifier } from "../../schemas";
 import { NetworkController } from "../controllers/network";
 
 export const register = (server: Hapi.Server): void => {
@@ -13,7 +14,7 @@ export const register = (server: Hapi.Server): void => {
 		handler: controller.list,
 		options: {
 			validate: {
-				payload: Joi.object().keys({ metadata: Joi.object().optional() }).required().unknown(false),
+				payload: Joi.object({ metadata }),
 			},
 		},
 	});
@@ -23,9 +24,9 @@ export const register = (server: Hapi.Server): void => {
 		path: "/network/options",
 		handler: controller.options,
 		options: {
-			// validate: {
-			//     payload: {},
-			// },
+			validate: {
+				payload: Joi.object({ metadata, network_identifier }),
+			},
 		},
 	});
 
@@ -33,6 +34,10 @@ export const register = (server: Hapi.Server): void => {
 		method: "POST",
 		path: "/network/status",
 		handler: controller.status,
-		options: {},
+		options: {
+			validate: {
+				payload: Joi.object({ metadata, network_identifier }),
+			},
+		},
 	});
 };

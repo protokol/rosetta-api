@@ -1,5 +1,7 @@
 import Hapi from "@hapi/hapi";
+import Joi from "@hapi/joi";
 
+import { account_identifier, network_identifier } from "../../schemas";
 import { AccountController } from "../controllers/account";
 
 export const register = (server: Hapi.Server): void => {
@@ -11,9 +13,9 @@ export const register = (server: Hapi.Server): void => {
 		path: "/account/balance",
 		handler: (request: Hapi.Request) => controller.balance(request),
 		options: {
-			// validate: {
-			//     payload: {},
-			// },
+			validate: {
+				payload: Joi.object({ network_identifier, account_identifier }),
+			},
 		},
 	});
 };

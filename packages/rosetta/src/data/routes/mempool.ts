@@ -1,5 +1,7 @@
 import Hapi from "@hapi/hapi";
+import Joi from "@hapi/joi";
 
+import { metadata, network_identifier, transaction_identifier } from "../../schemas";
 import { MempoolController } from "../controllers/mempool";
 
 export const register = (server: Hapi.Server): void => {
@@ -10,13 +12,21 @@ export const register = (server: Hapi.Server): void => {
 		method: "POST",
 		path: "/mempool",
 		handler: (request: Hapi.Request) => controller.list(request),
-		options: {},
+		options: {
+			validate: {
+				payload: Joi.object({ metadata, network_identifier }),
+			},
+		},
 	});
 
 	server.route({
 		method: "POST",
 		path: "/mempool/transaction",
 		handler: (request: Hapi.Request) => controller.transaction(request),
-		options: {},
+		options: {
+			validate: {
+				payload: Joi.object({ transaction_identifier, network_identifier }),
+			},
+		},
 	});
 };
