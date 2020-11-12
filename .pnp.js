@@ -1348,6 +1348,31 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@hapi/topo", "npm:5.0.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:20.0.2", {
+          "packageLocation": "./.yarn/cache/@hapi-hapi-npm-20.0.2-9fe4a67fa2-68b187e1bd.zip/node_modules/@hapi/hapi/",
+          "packageDependencies": [
+            ["@hapi/hapi", "npm:20.0.2"],
+            ["@hapi/accept", "npm:5.0.1"],
+            ["@hapi/ammo", "npm:5.0.1"],
+            ["@hapi/boom", "npm:9.1.0"],
+            ["@hapi/bounce", "npm:2.0.0"],
+            ["@hapi/call", "npm:8.0.1"],
+            ["@hapi/catbox", "npm:11.1.1"],
+            ["@hapi/catbox-memory", "npm:5.0.0"],
+            ["@hapi/heavy", "npm:7.0.1"],
+            ["@hapi/hoek", "npm:9.1.0"],
+            ["@hapi/mimos", "npm:5.0.0"],
+            ["@hapi/podium", "npm:4.1.1"],
+            ["@hapi/shot", "npm:5.0.4"],
+            ["@hapi/somever", "npm:3.0.0"],
+            ["@hapi/statehood", "npm:7.0.3"],
+            ["@hapi/subtext", "npm:7.0.3"],
+            ["@hapi/teamwork", "npm:5.1.0"],
+            ["@hapi/topo", "npm:5.0.0"],
+            ["@hapi/validate", "npm:1.1.3"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@hapi/heavy", [
@@ -2393,7 +2418,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/core-kernel", "npm:3.0.0-next.6"],
             ["@arkecosystem/crypto", "npm:3.0.0-next.6"],
             ["@hapi/boom", "npm:9.1.0"],
-            ["@hapi/hapi", "npm:19.2.0"],
+            ["@hapi/hapi", "npm:20.0.2"],
             ["@hapi/joi", "npm:17.1.1"],
             ["@types/hapi__boom", "npm:7.4.1"],
             ["@types/hapi__joi", "npm:17.1.6"],
@@ -9995,7 +10020,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ]],
       ["ngrok", [
         ["npm:3.3.0", {
-          "packageLocation": "./.yarn/unplugged/ngrok-npm-3.3.0-ff8d3edfc1/node_modules/ngrok/",
+          "packageLocation": "./.yarn/cache/ngrok-npm-3.3.0-ff8d3edfc1-6e9bdd8e03.zip/node_modules/ngrok/",
           "packageDependencies": [
             ["ngrok", "npm:3.3.0"],
             ["@types/node", "npm:8.10.65"],
