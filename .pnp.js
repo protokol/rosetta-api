@@ -2398,7 +2398,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/hapi__boom", "npm:7.4.1"],
             ["@types/hapi__joi", "npm:17.1.6"],
             ["@types/ip", "npm:1.1.0"],
-            ["@types/semver", "npm:6.2.2"],
+            ["@types/semver", "npm:7.3.4"],
             ["bcrypto", "npm:5.3.0"],
             ["latest-version", "npm:5.1.0"],
             ["rimraf", "npm:3.0.2"],
@@ -2877,13 +2877,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@types/semver", [
-        ["npm:6.2.2", {
-          "packageLocation": "./.yarn/cache/@types-semver-npm-6.2.2-43a179c553-21830b30aa.zip/node_modules/@types/semver/",
-          "packageDependencies": [
-            ["@types/semver", "npm:6.2.2"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:7.3.4", {
           "packageLocation": "./.yarn/cache/@types-semver-npm-7.3.4-96fde085ea-7e8588aa55.zip/node_modules/@types/semver/",
           "packageDependencies": [
@@ -9995,7 +9988,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ]],
       ["ngrok", [
         ["npm:3.3.0", {
-          "packageLocation": "./.yarn/unplugged/ngrok-npm-3.3.0-ff8d3edfc1/node_modules/ngrok/",
+          "packageLocation": "./.yarn/cache/ngrok-npm-3.3.0-ff8d3edfc1-6e9bdd8e03.zip/node_modules/ngrok/",
           "packageDependencies": [
             ["ngrok", "npm:3.3.0"],
             ["@types/node", "npm:8.10.65"],

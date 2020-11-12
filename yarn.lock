@@ -2120,7 +2120,7 @@ __metadata:
     "@types/hapi__boom": ^7.4.1
     "@types/hapi__joi": ^17.0.0
     "@types/ip": ^1.1.0
-    "@types/semver": ^6.2.0
+    "@types/semver": ^7.0.0
     bcrypto: ^5.3.0
     latest-version: ^5.1.0
     rimraf: ^3.0.2
@@ -2597,14 +2597,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semver@npm:^6.2.0":
-  version: 6.2.2
-  resolution: "@types/semver@npm:6.2.2"
-  checksum: 21830b30aae7e0007f44e58ea74881d056bdeaf9f4769dbe2baec2f1c5d0cee846b961a88e3807ba67d6378ab08be48cb3615335b9b64a54127abd812c75b3cb
-  languageName: node
-  linkType: hard
-
-"@types/semver@npm:^7.1.0":
+"@types/semver@npm:^7.0.0, @types/semver@npm:^7.1.0":
   version: 7.3.4
   resolution: "@types/semver@npm:7.3.4"
   checksum: 7e8588aa55ecb344eda6954674b83a3c568d97d478e70e4617bd3ab22902590ac416ccf2cea48b58fb2f0fbd80f9ad1896332c9b3c3189ffd24e4350ff22094a
