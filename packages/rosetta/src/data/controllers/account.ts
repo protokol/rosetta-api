@@ -26,7 +26,7 @@ export class AccountController extends Controller {
 
 		let value = walletResource.balance.toFixed();
 		// genesis wallet has negative balance -> instead return 0
-		if (this.stateStore.getGenesisBlock().transactions[0].data.senderPublicKey == walletResource.publicKey) {
+		if (this.stateStore.getGenesisBlock().transactions[0]?.data.senderPublicKey == walletResource.publicKey) {
 			value = "0";
 		}
 		return {

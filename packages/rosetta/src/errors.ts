@@ -1,6 +1,17 @@
 import { ErrorType } from "./interfaces";
 
-export const Errors: Record<string, ErrorType> = {
+type ErrorEnums =
+	| "UNSUPPORTED_IDENTIFIER"
+	| "BLOCK_NOT_FOUND"
+	| "TX_NOT_FOUND"
+	| "WALLET_NOT_FOUND"
+	| "UNSUPPORTED_CURVE_TYPE"
+	| "INVALID_PUBKEY"
+	| "INVALID_OPERATIONS"
+	| "INVALID_TRANSACTION"
+	| "MISSING_PUBKEY";
+
+export const Errors: Record<ErrorEnums, ErrorType> = {
 	UNSUPPORTED_IDENTIFIER: {
 		code: 400,
 		message: "network identifier is not supported",
