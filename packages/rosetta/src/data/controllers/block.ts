@@ -46,7 +46,7 @@ export class BlockController extends Controller {
 				buildTransactionInfo(
 					tx,
 					forger,
-					this.stateStore.getGenesisBlock().transactions[0].data.senderPublicKey === tx.senderPublicKey,
+					this.stateStore.getGenesisBlock().transactions[0]?.data.senderPublicKey === tx.senderPublicKey,
 				),
 			);
 		}
@@ -110,7 +110,7 @@ export class BlockController extends Controller {
 			transaction: buildTransactionInfo(
 				transaction,
 				Identities.Address.fromPublicKey(block!.data.generatorPublicKey),
-				this.stateStore.getGenesisBlock().transactions[0].data.senderPublicKey === transaction.senderPublicKey,
+				this.stateStore.getGenesisBlock().transactions[0]?.data.senderPublicKey === transaction.senderPublicKey,
 			),
 		};
 	}

@@ -54,10 +54,10 @@ export class ConstructionController extends Controller {
 			options.fee = metadata.fee;
 		}
 
-		options.sender = operations[0].account!.address;
-		options.reciever = operations[1].account!.address;
-		options.type = operations[0].type;
-		options.value = operations[1].amount!.value;
+		options.sender = operations[0]!.account!.address;
+		options.reciever = operations[1]!.account!.address;
+		options.type = operations[0]!.type;
+		options.value = operations[1]!.amount!.value;
 
 		return { options, required_public_keys: [{ address: options.sender }] };
 	}
@@ -88,9 +88,9 @@ export class ConstructionController extends Controller {
 			return Errors.MISSING_PUBKEY;
 		}
 
-		const sender = operations[0].account!.address;
-		const reciever = operations[1].account!.address;
-		const value = operations[1].amount!.value;
+		const sender = operations[0]!.account!.address;
+		const reciever = operations[1]!.account!.address;
+		const value = operations[1]!.amount!.value;
 
 		let transaction = Transactions.BuilderFactory.transfer()
 			.nonce(metadata.nonce)
@@ -143,7 +143,7 @@ export class ConstructionController extends Controller {
 			unsigned_transaction: unsignedTx,
 			signatures,
 		}: { unsigned_transaction: string; signatures: Signature[] } = request.payload;
-		const signatureExport = secp256k1.signatureExport(Buffer.from(signatures[0].hex_bytes, "hex")).toString("hex");
+		const signatureExport = secp256k1.signatureExport(Buffer.from(signatures[0]!.hex_bytes, "hex")).toString("hex");
 
 		const transaction = Transactions.TransactionFactory.fromBytesUnsafe(Buffer.from(unsignedTx, "hex"));
 		transaction.data.signature = signatureExport;
@@ -174,7 +174,7 @@ export class ConstructionController extends Controller {
 			return Errors.INVALID_TRANSACTION;
 		}
 
-		return { transaction_identifier: { hash: data.broadcast[0] || data.accept[0] } };
+		return { transaction_identifier: { hash: data.broadcast[0] || data.accept[0]! } };
 	}
 
 	private getClient(): Connection {
