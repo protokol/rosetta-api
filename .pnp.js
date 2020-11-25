@@ -306,46 +306,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["type-fest", "npm:0.16.0"]
           ],
           "linkType": "HARD",
-        }],
-        ["npm:3.0.0-next.9", {
-          "packageLocation": "./.yarn/unplugged/@arkecosystem-core-kernel-npm-3.0.0-next.9-477b603b64/node_modules/@arkecosystem/core-kernel/",
-          "packageDependencies": [
-            ["@arkecosystem/core-kernel", "npm:3.0.0-next.9"],
-            ["@arkecosystem/core-api", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-blockchain", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-database", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-forger", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-logger-pino", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-magistrate-api", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-magistrate-transactions", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-manager", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-p2p", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-snapshots", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-state", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-transaction-pool", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-transactions", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-webhooks", "npm:3.0.0-next.11"],
-            ["@arkecosystem/crypto", "npm:3.0.0-next.11"],
-            ["@arkecosystem/utils", "npm:1.2.1"],
-            ["@hapi/joi", "npm:17.1.1"],
-            ["@pm2/io", "npm:4.3.5"],
-            ["@protokol/rosetta-api", "workspace:packages/rosetta"],
-            ["chalk", "npm:4.1.0"],
-            ["cron", "npm:1.8.2"],
-            ["dayjs", "npm:1.9.6"],
-            ["deepmerge", "npm:4.2.2"],
-            ["env-paths", "npm:2.2.0"],
-            ["fs-extra", "npm:8.1.0"],
-            ["import-fresh", "npm:3.2.2"],
-            ["inversify", "npm:5.0.1"],
-            ["log-process-errors", "npm:5.1.2"],
-            ["nanomatch", "npm:1.2.13"],
-            ["nsfw", "npm:2.1.0"],
-            ["reflect-metadata", "npm:0.1.13"],
-            ["semver", "npm:6.3.0"],
-            ["type-fest", "npm:0.16.0"]
-          ],
-          "linkType": "HARD",
         }]
       ]],
       ["@arkecosystem/core-logger-pino", [
@@ -417,6 +377,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/core-cli", "npm:3.0.0-next.11"],
             ["@arkecosystem/core-database", "npm:3.0.0-next.11"],
             ["@arkecosystem/core-kernel", "npm:3.0.0-next.11"],
+            ["@arkecosystem/core-snapshots", "npm:3.0.0-next.11"],
             ["@arkecosystem/core-state", "npm:3.0.0-next.11"],
             ["@arkecosystem/crypto", "npm:3.0.0-next.11"],
             ["@arkecosystem/utils", "npm:1.2.1"],
@@ -429,6 +390,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@sindresorhus/df", "npm:3.1.1"],
             ["argon2", "npm:0.26.2"],
             ["better-sqlite3", "npm:7.1.1"],
+            ["dayjs", "npm:1.9.6"],
             ["execa", "npm:3.4.0"],
             ["fs-extra", "npm:8.1.0"],
             ["got", "npm:11.8.0"],
@@ -2625,7 +2587,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@protokol/rosetta-api", "workspace:packages/rosetta"],
             ["@arkecosystem/client", "npm:2.0.0"],
             ["@arkecosystem/core-api", "npm:3.0.0-next.11"],
-            ["@arkecosystem/core-kernel", "npm:3.0.0-next.9"],
+            ["@arkecosystem/core-kernel", "npm:3.0.0-next.11"],
             ["@arkecosystem/crypto", "npm:3.0.0-next.9"],
             ["@hapi/boom", "npm:9.1.0"],
             ["@hapi/hapi", "npm:20.0.3"],
@@ -10150,7 +10112,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ]],
       ["ngrok", [
         ["npm:3.3.0", {
-          "packageLocation": "./.yarn/cache/ngrok-npm-3.3.0-ff8d3edfc1-6e9bdd8e03.zip/node_modules/ngrok/",
+          "packageLocation": "./.yarn/unplugged/ngrok-npm-3.3.0-ff8d3edfc1/node_modules/ngrok/",
           "packageDependencies": [
             ["ngrok", "npm:3.3.0"],
             ["@types/node", "npm:8.10.66"],
@@ -11660,7 +11622,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ]],
       ["protobufjs", [
         ["npm:6.10.2", {
-          "packageLocation": "./.yarn/cache/protobufjs-npm-6.10.2-f0f2cab7fe-09d6292362.zip/node_modules/protobufjs/",
+          "packageLocation": "./.yarn/unplugged/protobufjs-npm-6.10.2-f0f2cab7fe/node_modules/protobufjs/",
           "packageDependencies": [
             ["protobufjs", "npm:6.10.2"],
             ["@protobufjs/aspromise", "npm:1.1.2"],

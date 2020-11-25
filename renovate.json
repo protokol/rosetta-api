@@ -3,7 +3,7 @@
 	"baseBranches": ["develop"],
 	"packageRules": [
 		{
-			"sourceUrlPrefixes": ["https://github.com/ArkEcosystem/"],
+			"packagePatterns": ["^@arkecosystem"],
 			"groupName": "ark packages"
 		}
 	]
