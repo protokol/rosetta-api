@@ -69,40 +69,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-cli@npm:3.0.0-next.9":
-  version: 3.0.0-next.9
-  resolution: "@arkecosystem/core-cli@npm:3.0.0-next.9"
-  dependencies:
-    "@arkecosystem/core-kernel": ^3.0.0-next.9
-    "@arkecosystem/crypto": ^3.0.0-next.9
-    "@arkecosystem/utils": ^1.2.0
-    "@hapi/joi": ^17.1.0
-    boxen: ^4.2.0
-    cli-table3: ^0.6.0
-    dayjs: ^1.8.17
-    env-paths: ^2.2.0
-    envfile: ^5.0.0
-    execa: ^3.4.0
-    fast-levenshtein: ^2.0.6
-    fs-extra: ^8.1.0
-    inversify: ^5.0.1
-    is-ci: ^2.0.0
-    kleur: ^4.0.0
-    latest-version: ^5.1.0
-    listr: ^0.14.3
-    nodejs-tail: ^1.1.0
-    ora: ^4.0.3
-    prompts: ^2.4.0
-    read-last-lines: ^1.7.1
-    reflect-metadata: ^0.1.13
-    semver: ^6.3.0
-    type-fest: ^0.16.0
-    yargs-parser: ^20.0.0
-  checksum: 2d64767921d21576fc2b4bc0d5e21da77138ba63cd7978dbba4f31d0112c0be30b4cd6029328d7db79e988daa82465d7e02425cc4da1b62aef191c96c2f1ffde
-  languageName: node
-  linkType: hard
-
-"@arkecosystem/core-cli@npm:^3.0.0-next.11":
+"@arkecosystem/core-cli@npm:3.0.0-next.11, @arkecosystem/core-cli@npm:^3.0.0-next.11":
   version: 3.0.0-next.11
   resolution: "@arkecosystem/core-cli@npm:3.0.0-next.11"
   dependencies:
@@ -192,7 +159,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-kernel@npm:^3.0.0-next.11, @arkecosystem/core-kernel@npm:^3.0.0-next.9":
+"@arkecosystem/core-kernel@npm:^3.0.0-next.11":
   version: 3.0.0-next.11
   resolution: "@arkecosystem/core-kernel@npm:3.0.0-next.11"
   dependencies:
@@ -2355,7 +2322,7 @@ __metadata:
   resolution: "@protokol/rosetta@workspace:."
   dependencies:
     "@arkecosystem/core": 3.0.0-next.11
-    "@arkecosystem/core-cli": 3.0.0-next.9
+    "@arkecosystem/core-cli": 3.0.0-next.11
     "@sindresorhus/tsconfig": ^0.8.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
