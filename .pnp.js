@@ -377,6 +377,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/core-cli", "npm:3.0.0-next.11"],
             ["@arkecosystem/core-database", "npm:3.0.0-next.11"],
             ["@arkecosystem/core-kernel", "npm:3.0.0-next.11"],
+            ["@arkecosystem/core-snapshots", "npm:3.0.0-next.11"],
             ["@arkecosystem/core-state", "npm:3.0.0-next.11"],
             ["@arkecosystem/crypto", "npm:3.0.0-next.11"],
             ["@arkecosystem/utils", "npm:1.2.1"],
@@ -389,6 +390,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@sindresorhus/df", "npm:3.1.1"],
             ["argon2", "npm:0.26.2"],
             ["better-sqlite3", "npm:7.1.1"],
+            ["dayjs", "npm:1.9.6"],
             ["execa", "npm:3.4.0"],
             ["fs-extra", "npm:8.1.0"],
             ["got", "npm:11.8.0"],
@@ -10110,7 +10112,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ]],
       ["ngrok", [
         ["npm:3.3.0", {
-          "packageLocation": "./.yarn/cache/ngrok-npm-3.3.0-ff8d3edfc1-6e9bdd8e03.zip/node_modules/ngrok/",
+          "packageLocation": "./.yarn/unplugged/ngrok-npm-3.3.0-ff8d3edfc1/node_modules/ngrok/",
           "packageDependencies": [
             ["ngrok", "npm:3.3.0"],
             ["@types/node", "npm:8.10.66"],
@@ -11620,7 +11622,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ]],
       ["protobufjs", [
         ["npm:6.10.2", {
-          "packageLocation": "./.yarn/cache/protobufjs-npm-6.10.2-f0f2cab7fe-09d6292362.zip/node_modules/protobufjs/",
+          "packageLocation": "./.yarn/unplugged/protobufjs-npm-6.10.2-f0f2cab7fe/node_modules/protobufjs/",
           "packageDependencies": [
             ["protobufjs", "npm:6.10.2"],
             ["@protobufjs/aspromise", "npm:1.1.2"],
