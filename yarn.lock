@@ -133,33 +133,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-kernel@npm:3.0.0-next.9":
-  version: 3.0.0-next.9
-  resolution: "@arkecosystem/core-kernel@npm:3.0.0-next.9"
-  dependencies:
-    "@arkecosystem/crypto": ^3.0.0-next.9
-    "@arkecosystem/utils": ^1.2.0
-    "@hapi/joi": ^17.1.0
-    "@pm2/io": ^4.3.5
-    chalk: ^4.0.0
-    cron: ^1.7.2
-    dayjs: ^1.8.17
-    deepmerge: ^4.2.2
-    env-paths: ^2.2.0
-    fs-extra: ^8.1.0
-    import-fresh: ^3.2.1
-    inversify: ^5.0.1
-    log-process-errors: ^5.0.3
-    nanomatch: ^1.2.13
-    nsfw: ^2.0.0
-    reflect-metadata: ^0.1.13
-    semver: ^6.3.0
-    type-fest: ^0.16.0
-  checksum: c5364041012548439ce01d3c71e6a788fe7f9a069545ecded001023da85b728f5cce5cf0fedde56f8a2a8da3bcb2825c86fbb6378f4420b2a6aa3386b2d46af1
-  languageName: node
-  linkType: hard
-
-"@arkecosystem/core-kernel@npm:^3.0.0-next.11":
+"@arkecosystem/core-kernel@npm:3.0.0-next.11, @arkecosystem/core-kernel@npm:^3.0.0-next.11":
   version: 3.0.0-next.11
   resolution: "@arkecosystem/core-kernel@npm:3.0.0-next.11"
   dependencies:
@@ -484,7 +458,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/crypto@npm:^3.0.0-next.11, @arkecosystem/crypto@npm:^3.0.0-next.9":
+"@arkecosystem/crypto@npm:^3.0.0-next.11":
   version: 3.0.0-next.11
   resolution: "@arkecosystem/crypto@npm:3.0.0-next.11"
   dependencies:
@@ -2302,7 +2276,7 @@ __metadata:
   dependencies:
     "@arkecosystem/client": 2.0.0
     "@arkecosystem/core-api": 3.0.0-next.11
-    "@arkecosystem/core-kernel": 3.0.0-next.9
+    "@arkecosystem/core-kernel": 3.0.0-next.11
     "@arkecosystem/crypto": 3.0.0-next.9
     "@hapi/boom": ^9.0.0
     "@hapi/hapi": ^20.0.0
