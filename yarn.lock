@@ -360,7 +360,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core@npm:^3.0.0-next.9":
+"@arkecosystem/core@npm:3.0.0-next.11":
   version: 3.0.0-next.11
   resolution: "@arkecosystem/core@npm:3.0.0-next.11"
   dependencies:
@@ -2267,7 +2267,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@protokol/rosetta@workspace:."
   dependencies:
-    "@arkecosystem/core": ^3.0.0-next.9
+    "@arkecosystem/core": 3.0.0-next.11
     "@arkecosystem/core-cli": ^3.0.0-next.9
     "@sindresorhus/tsconfig": ^0.8.0
     "@types/eslint": ^7.2.0
