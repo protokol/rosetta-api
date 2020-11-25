@@ -14,7 +14,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/client@npm:^2.0.0":
+"@arkecosystem/client@npm:2.0.0":
   version: 2.0.0
   resolution: "@arkecosystem/client@npm:2.0.0"
   dependencies:
@@ -26,7 +26,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-api@npm:^3.0.0-next.11, @arkecosystem/core-api@npm:^3.0.0-next.9, @arkecosystem/core-api@npm:next":
+"@arkecosystem/core-api@npm:3.0.0-next.11, @arkecosystem/core-api@npm:^3.0.0-next.11, @arkecosystem/core-api@npm:next":
   version: 3.0.0-next.11
   resolution: "@arkecosystem/core-api@npm:3.0.0-next.11"
   dependencies:
@@ -69,7 +69,40 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-cli@npm:^3.0.0-next.11, @arkecosystem/core-cli@npm:^3.0.0-next.9":
+"@arkecosystem/core-cli@npm:3.0.0-next.9":
+  version: 3.0.0-next.9
+  resolution: "@arkecosystem/core-cli@npm:3.0.0-next.9"
+  dependencies:
+    "@arkecosystem/core-kernel": ^3.0.0-next.9
+    "@arkecosystem/crypto": ^3.0.0-next.9
+    "@arkecosystem/utils": ^1.2.0
+    "@hapi/joi": ^17.1.0
+    boxen: ^4.2.0
+    cli-table3: ^0.6.0
+    dayjs: ^1.8.17
+    env-paths: ^2.2.0
+    envfile: ^5.0.0
+    execa: ^3.4.0
+    fast-levenshtein: ^2.0.6
+    fs-extra: ^8.1.0
+    inversify: ^5.0.1
+    is-ci: ^2.0.0
+    kleur: ^4.0.0
+    latest-version: ^5.1.0
+    listr: ^0.14.3
+    nodejs-tail: ^1.1.0
+    ora: ^4.0.3
+    prompts: ^2.4.0
+    read-last-lines: ^1.7.1
+    reflect-metadata: ^0.1.13
+    semver: ^6.3.0
+    type-fest: ^0.16.0
+    yargs-parser: ^20.0.0
+  checksum: 2d64767921d21576fc2b4bc0d5e21da77138ba63cd7978dbba4f31d0112c0be30b4cd6029328d7db79e988daa82465d7e02425cc4da1b62aef191c96c2f1ffde
+  languageName: node
+  linkType: hard
+
+"@arkecosystem/core-cli@npm:^3.0.0-next.11":
   version: 3.0.0-next.11
   resolution: "@arkecosystem/core-cli@npm:3.0.0-next.11"
   dependencies:
@@ -130,6 +163,32 @@ __metadata:
     otplib: ^12.0.0
     wif: ^2.0.6
   checksum: c1d64943c040be1f852fa61f12812a7888e9672141b3aeb19b64b4f8af7be83df9ec671696c077eeffc665c6cac53e0a7c63910d76fc1a57bc66a7c904c0fa35
+  languageName: node
+  linkType: hard
+
+"@arkecosystem/core-kernel@npm:3.0.0-next.9":
+  version: 3.0.0-next.9
+  resolution: "@arkecosystem/core-kernel@npm:3.0.0-next.9"
+  dependencies:
+    "@arkecosystem/crypto": ^3.0.0-next.9
+    "@arkecosystem/utils": ^1.2.0
+    "@hapi/joi": ^17.1.0
+    "@pm2/io": ^4.3.5
+    chalk: ^4.0.0
+    cron: ^1.7.2
+    dayjs: ^1.8.17
+    deepmerge: ^4.2.2
+    env-paths: ^2.2.0
+    fs-extra: ^8.1.0
+    import-fresh: ^3.2.1
+    inversify: ^5.0.1
+    log-process-errors: ^5.0.3
+    nanomatch: ^1.2.13
+    nsfw: ^2.0.0
+    reflect-metadata: ^0.1.13
+    semver: ^6.3.0
+    type-fest: ^0.16.0
+  checksum: c5364041012548439ce01d3c71e6a788fe7f9a069545ecded001023da85b728f5cce5cf0fedde56f8a2a8da3bcb2825c86fbb6378f4420b2a6aa3386b2d46af1
   languageName: node
   linkType: hard
 
@@ -430,6 +489,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@arkecosystem/crypto@npm:3.0.0-next.9":
+  version: 3.0.0-next.9
+  resolution: "@arkecosystem/crypto@npm:3.0.0-next.9"
+  dependencies:
+    "@arkecosystem/crypto-identities": ^1.1.1
+    "@arkecosystem/crypto-networks": ^1.0.0
+    "@arkecosystem/utils": ^1.2.0
+    ajv: ^6.10.2
+    ajv-keywords: ^3.4.1
+    bcrypto: ^5.3.0
+    bip32: ^2.0.4
+    bip39: ^3.0.2
+    browserify-aes: ^1.2.0
+    bstring: ^0.3.9
+    buffer-xor: ^2.0.2
+    builtin-modules: ^3.1.0
+    bytebuffer: ^5.0.1
+    dayjs: ^1.8.17
+    deepmerge: ^4.2.2
+    fast-memoize: ^2.5.1
+    ipaddr.js: ^2.0.0
+    lodash.get: ^4.4.2
+    lodash.set: ^4.3.2
+    wif: ^2.0.6
+  checksum: a7e68fcb9fc586969d25268008e24d92495a747bbc174b0fb3661900e89943b813b138ade7af675a168660f0956235a0a3ffeae8dd1c3a3f6cfcfc5f29d27f57
+  languageName: node
+  linkType: hard
+
 "@arkecosystem/crypto@npm:^3.0.0-next.11, @arkecosystem/crypto@npm:^3.0.0-next.9":
   version: 3.0.0-next.11
   resolution: "@arkecosystem/crypto@npm:3.0.0-next.11"
@@ -458,7 +545,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/utils@npm:^1.2.1":
+"@arkecosystem/utils@npm:^1.2.0, @arkecosystem/utils@npm:^1.2.1":
   version: 1.2.1
   resolution: "@arkecosystem/utils@npm:1.2.1"
   dependencies:
@@ -2246,10 +2333,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@protokol/rosetta-api@workspace:packages/rosetta"
   dependencies:
-    "@arkecosystem/client": ^2.0.0
-    "@arkecosystem/core-api": ^3.0.0-next.9
-    "@arkecosystem/core-kernel": ^3.0.0-next.9
-    "@arkecosystem/crypto": ^3.0.0-next.9
+    "@arkecosystem/client": 2.0.0
+    "@arkecosystem/core-api": 3.0.0-next.11
+    "@arkecosystem/core-kernel": 3.0.0-next.9
+    "@arkecosystem/crypto": 3.0.0-next.9
     "@hapi/boom": ^9.0.0
     "@hapi/hapi": ^20.0.0
     "@hapi/joi": ^17.1.0
@@ -2268,7 +2355,7 @@ __metadata:
   resolution: "@protokol/rosetta@workspace:."
   dependencies:
     "@arkecosystem/core": 3.0.0-next.11
-    "@arkecosystem/core-cli": ^3.0.0-next.9
+    "@arkecosystem/core-cli": 3.0.0-next.9
     "@sindresorhus/tsconfig": ^0.8.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
