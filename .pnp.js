@@ -552,34 +552,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["wif", "npm:2.0.6"]
           ],
           "linkType": "HARD",
-        }],
-        ["npm:3.0.0-next.9", {
-          "packageLocation": "./.yarn/unplugged/@arkecosystem-crypto-npm-3.0.0-next.9-fe3c4589fb/node_modules/@arkecosystem/crypto/",
-          "packageDependencies": [
-            ["@arkecosystem/crypto", "npm:3.0.0-next.9"],
-            ["@arkecosystem/crypto-identities", "npm:1.1.1"],
-            ["@arkecosystem/crypto-networks", "npm:1.0.0"],
-            ["@arkecosystem/utils", "npm:1.2.1"],
-            ["@types/node", "npm:14.14.10"],
-            ["ajv", "npm:6.12.6"],
-            ["ajv-keywords", "virtual:ed06b91d00071182efb843d85ce4d70cb1d5911ec0e265cd7214edc8ebe58fcf97544454d0bfd4983ac436c75f63807daac7be98b674937ebf8e13cc83ed4d1e#npm:3.5.2"],
-            ["bcrypto", "npm:5.3.0"],
-            ["bip32", "npm:2.0.6"],
-            ["bip39", "npm:3.0.3"],
-            ["browserify-aes", "npm:1.2.0"],
-            ["bstring", "npm:0.3.9"],
-            ["buffer-xor", "npm:2.0.2"],
-            ["builtin-modules", "npm:3.1.0"],
-            ["bytebuffer", "npm:5.0.1"],
-            ["dayjs", "npm:1.9.6"],
-            ["deepmerge", "npm:4.2.2"],
-            ["fast-memoize", "npm:2.5.2"],
-            ["ipaddr.js", "npm:2.0.0"],
-            ["lodash.get", "npm:4.4.2"],
-            ["lodash.set", "npm:4.3.2"],
-            ["wif", "npm:2.0.6"]
-          ],
-          "linkType": "HARD",
         }]
       ]],
       ["@arkecosystem/crypto-identities", [
@@ -2588,7 +2560,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@arkecosystem/client", "npm:2.0.0"],
             ["@arkecosystem/core-api", "npm:3.0.0-next.11"],
             ["@arkecosystem/core-kernel", "npm:3.0.0-next.11"],
-            ["@arkecosystem/crypto", "npm:3.0.0-next.9"],
+            ["@arkecosystem/crypto", "npm:3.0.0-next.11"],
             ["@hapi/boom", "npm:9.1.0"],
             ["@hapi/hapi", "npm:20.0.3"],
             ["@hapi/joi", "npm:17.1.1"],

@@ -16,7 +16,7 @@
 		"@arkecosystem/client": "2.0.0",
 		"@arkecosystem/core-api": "3.0.0-next.11",
 		"@arkecosystem/core-kernel": "3.0.0-next.11",
-		"@arkecosystem/crypto": "3.0.0-next.9",
+		"@arkecosystem/crypto": "3.0.0-next.11",
 		"@hapi/boom": "^9.0.0",
 		"@hapi/hapi": "^20.0.0",
 		"@hapi/joi": "^17.1.0",
