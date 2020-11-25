@@ -5,7 +5,7 @@
 		{
 			"packagePatterns": ["^@arkecosystem"],
 			"groupName": "ark packages",
-			"rangeStrategy": "pin"
+			"rangeStrategy": "bump"
 		}
 	]
 }
