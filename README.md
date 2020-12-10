@@ -1,9 +1,12 @@
-![Img](core-starter-kit.png)
+![Img](rosetta-api.png)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 # Rosetta
 
 This is the reference implementation of the Rosetta API for ARK.
+
+Rosetta is an open standard designed to simplify blockchain deployment and interaction. Spend less time on integration and more time on novel blockchain advancements.
+Rosetta was built using best practices learned from working with 50+ blockchains. Read more at https://www.rosetta-api.org/. Adding `@protokol/rosetta-api` packages to you bridgechain will make it Rosetta compatible.
 
 This work is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
