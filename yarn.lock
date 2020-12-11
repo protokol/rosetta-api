@@ -14,7 +14,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/client@npm:2.0.0":
+"@arkecosystem/client@npm:^2.0.0":
   version: 2.0.0
   resolution: "@arkecosystem/client@npm:2.0.0"
   dependencies:
@@ -26,7 +26,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-api@npm:3.0.0-next.16, @arkecosystem/core-api@npm:^3.0.0-next.16, @arkecosystem/core-api@npm:next":
+"@arkecosystem/core-api@npm:^3.0.0-next, @arkecosystem/core-api@npm:^3.0.0-next.16, @arkecosystem/core-api@npm:next":
   version: 3.0.0-next.16
   resolution: "@arkecosystem/core-api@npm:3.0.0-next.16"
   dependencies:
@@ -69,7 +69,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-cli@npm:3.0.0-next.16, @arkecosystem/core-cli@npm:^3.0.0-next.16":
+"@arkecosystem/core-cli@npm:^3.0.0-next, @arkecosystem/core-cli@npm:^3.0.0-next.16":
   version: 3.0.0-next.16
   resolution: "@arkecosystem/core-cli@npm:3.0.0-next.16"
   dependencies:
@@ -132,7 +132,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core-kernel@npm:3.0.0-next.16, @arkecosystem/core-kernel@npm:^3.0.0-next.16":
+"@arkecosystem/core-kernel@npm:^3.0.0-next, @arkecosystem/core-kernel@npm:^3.0.0-next.16":
   version: 3.0.0-next.16
   resolution: "@arkecosystem/core-kernel@npm:3.0.0-next.16"
   dependencies:
@@ -364,7 +364,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/core@npm:3.0.0-next.16":
+"@arkecosystem/core@npm:^3.0.0-next":
   version: 3.0.0-next.16
   resolution: "@arkecosystem/core@npm:3.0.0-next.16"
   dependencies:
@@ -434,7 +434,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/crypto@npm:3.0.0-next.16, @arkecosystem/crypto@npm:^3.0.0-next.16":
+"@arkecosystem/crypto@npm:^3.0.0-next, @arkecosystem/crypto@npm:^3.0.0-next.16":
   version: 3.0.0-next.16
   resolution: "@arkecosystem/crypto@npm:3.0.0-next.16"
   dependencies:
@@ -2250,10 +2250,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@protokol/rosetta-api@workspace:packages/rosetta"
   dependencies:
-    "@arkecosystem/client": 2.0.0
-    "@arkecosystem/core-api": 3.0.0-next.16
-    "@arkecosystem/core-kernel": 3.0.0-next.16
-    "@arkecosystem/crypto": 3.0.0-next.16
+    "@arkecosystem/client": ^2.0.0
+    "@arkecosystem/core-api": ^3.0.0-next
+    "@arkecosystem/core-kernel": ^3.0.0-next
+    "@arkecosystem/crypto": ^3.0.0-next
     "@hapi/boom": ^9.0.0
     "@hapi/hapi": ^20.0.0
     "@hapi/joi": ^17.1.0
@@ -2271,8 +2271,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@protokol/rosetta@workspace:."
   dependencies:
-    "@arkecosystem/core": 3.0.0-next.16
-    "@arkecosystem/core-cli": 3.0.0-next.16
+    "@arkecosystem/core": ^3.0.0-next
+    "@arkecosystem/core-cli": ^3.0.0-next
     "@sindresorhus/tsconfig": ^0.8.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
