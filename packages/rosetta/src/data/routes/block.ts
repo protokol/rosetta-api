@@ -1,5 +1,5 @@
 import Hapi from "@hapi/hapi";
-import Joi from "@hapi/joi";
+import Joi from "joi";
 
 import { block_identifier, block_identifier_required, network_identifier, transaction_identifier } from "../../schemas";
 import { BlockController } from "../controllers/block";

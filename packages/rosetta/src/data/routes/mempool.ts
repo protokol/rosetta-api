@@ -1,5 +1,5 @@
 import Hapi from "@hapi/hapi";
-import Joi from "@hapi/joi";
+import Joi from "joi";
 
 import { metadata, network_identifier, transaction_identifier } from "../../schemas";
 import { MempoolController } from "../controllers/mempool";

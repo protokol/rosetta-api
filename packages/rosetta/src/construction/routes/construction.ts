@@ -1,5 +1,5 @@
 import Hapi from "@hapi/hapi";
-import Joi from "@hapi/joi";
+import Joi from "joi";
 
 import { metadata, network_identifier, operations, options, public_key, public_keys, signatures } from "../../schemas";
 import { ConstructionController } from "../controllers/construction";
