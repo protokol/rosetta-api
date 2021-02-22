@@ -13,8 +13,8 @@ export class NetworkController extends Controller {
 	@Container.inject(Container.Identifiers.StateStore)
 	private readonly stateStore!: Contracts.State.StateStore;
 
-	@Container.inject(Container.Identifiers.PeerStorage)
-	private readonly peerStorage!: Contracts.P2P.PeerStorage;
+	@Container.inject(Container.Identifiers.PeerRepository)
+	private readonly peerStorage!: Contracts.P2P.PeerRepository;
 
 	public async list(): Promise<NetworkIdentifiersResource> {
 		return {
