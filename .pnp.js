@@ -44,7 +44,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@arkecosystem/core", "virtual:ee0f695e7e4ab3391b5674c2238eaa6660303b05510d88b83fbee68af5a2185b62f62206451c6792d26d88d6f0c700f9d8d1ea8222c51f99d168d1fbd3ee10ca#npm:3.0.0-next.22"],
             ["@arkecosystem/core-cli", "npm:3.0.0-next.22"],
-            ["@sindresorhus/tsconfig", "npm:0.8.0"],
+            ["@sindresorhus/tsconfig", "npm:0.9.0"],
             ["@types/eslint", "npm:7.2.6"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/jest", "npm:26.0.20"],
@@ -2616,7 +2616,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@protokol/rosetta", "workspace:."],
             ["@arkecosystem/core", "virtual:ee0f695e7e4ab3391b5674c2238eaa6660303b05510d88b83fbee68af5a2185b62f62206451c6792d26d88d6f0c700f9d8d1ea8222c51f99d168d1fbd3ee10ca#npm:3.0.0-next.22"],
             ["@arkecosystem/core-cli", "npm:3.0.0-next.22"],
-            ["@sindresorhus/tsconfig", "npm:0.8.0"],
+            ["@sindresorhus/tsconfig", "npm:0.9.0"],
             ["@types/eslint", "npm:7.2.6"],
             ["@types/eslint-plugin-prettier", "npm:3.1.0"],
             ["@types/jest", "npm:26.0.20"],
@@ -2748,10 +2748,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@sindresorhus/tsconfig", [
-        ["npm:0.8.0", {
-          "packageLocation": "./.yarn/cache/@sindresorhus-tsconfig-npm-0.8.0-8c813be5dd-5131f97d6b.zip/node_modules/@sindresorhus/tsconfig/",
+        ["npm:0.9.0", {
+          "packageLocation": "./.yarn/cache/@sindresorhus-tsconfig-npm-0.9.0-0ed4050753-07e516e712.zip/node_modules/@sindresorhus/tsconfig/",
           "packageDependencies": [
-            ["@sindresorhus/tsconfig", "npm:0.8.0"]
+            ["@sindresorhus/tsconfig", "npm:0.9.0"]
           ],
           "linkType": "HARD",
         }]
