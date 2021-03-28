@@ -2257,7 +2257,7 @@ __metadata:
   dependencies:
     "@arkecosystem/core": ^3.0.0-next
     "@arkecosystem/core-cli": ^3.0.0-next
-    "@sindresorhus/tsconfig": ^0.9.0
+    "@sindresorhus/tsconfig": ^1.0.0
     "@types/eslint": ^7.2.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^26.0.10
@@ -2370,10 +2370,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sindresorhus/tsconfig@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "@sindresorhus/tsconfig@npm:0.9.0"
-  checksum: 07e516e712aef328f01226118f3e4953f86d631e5f263b3398852b185dac1d3991943fccda00de7122ef2de52d1c18a1c2bf7327860b101999f20505e1c7a4fb
+"@sindresorhus/tsconfig@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@sindresorhus/tsconfig@npm:1.0.0"
+  checksum: 95ed1897de40d46f35f3eb39ec016b0fb8317c76d19755c8a59da8af589008b60c13d5628a9eec9bee4dbfb323eb5b77629600230d0ea1c3f2fabef5b8d67e1c
   languageName: node
   linkType: hard
 
