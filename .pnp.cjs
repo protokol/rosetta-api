@@ -81,13 +81,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@arkecosystem/client", [
-        ["npm:2.0.0", {
-          "packageLocation": "./.yarn/cache/@arkecosystem-client-npm-2.0.0-209fe4f724-90325d6928.zip/node_modules/@arkecosystem/client/",
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/@arkecosystem-client-npm-3.0.0-c571266939-4a1d60aec6.zip/node_modules/@arkecosystem/client/",
           "packageDependencies": [
-            ["@arkecosystem/client", "npm:2.0.0"],
+            ["@arkecosystem/client", "npm:3.0.0"],
             ["is-url-superb", "npm:4.0.0"],
-            ["ky", "npm:0.23.0"],
-            ["ky-universal", "virtual:209fe4f7240ea92f98b62f666c847769f96f763e7ceaa077035307eed7f53bcba5d7d5ec2691c5a964d9ee7695c2e1a618789616b75325aa53c104a184539d70#npm:0.8.2"],
+            ["ky", "npm:0.24.0"],
+            ["ky-universal", "virtual:c57126693973487afb38040e6c96c808db973bfd8d8f03e0615283e81a121c2db1f9ebdc4b787626aa2152b501f6088815f958b3a1ed385d40938f84adc90592#npm:0.8.2"],
             ["node-dotify", "npm:1.1.0"]
           ],
           "linkType": "HARD",
@@ -2774,7 +2774,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/rosetta/",
           "packageDependencies": [
             ["@protokol/rosetta-api", "workspace:packages/rosetta"],
-            ["@arkecosystem/client", "npm:2.0.0"],
+            ["@arkecosystem/client", "npm:3.0.0"],
             ["@arkecosystem/core-api", "npm:3.0.0-next.31"],
             ["@arkecosystem/core-kernel", "npm:3.0.0-next.31"],
             ["@arkecosystem/crypto", "npm:3.0.0-next.31"],
@@ -9828,10 +9828,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ky", [
-        ["npm:0.23.0", {
-          "packageLocation": "./.yarn/cache/ky-npm-0.23.0-6fb31c6f15-60d7d2ff55.zip/node_modules/ky/",
+        ["npm:0.24.0", {
+          "packageLocation": "./.yarn/cache/ky-npm-0.24.0-2d8ce47ad5-a0b2c369f5.zip/node_modules/ky/",
           "packageDependencies": [
-            ["ky", "npm:0.23.0"]
+            ["ky", "npm:0.24.0"]
           ],
           "linkType": "HARD",
         }]
@@ -9844,14 +9844,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:209fe4f7240ea92f98b62f666c847769f96f763e7ceaa077035307eed7f53bcba5d7d5ec2691c5a964d9ee7695c2e1a618789616b75325aa53c104a184539d70#npm:0.8.2", {
-          "packageLocation": "./.yarn/__virtual__/ky-universal-virtual-68bde43276/0/cache/ky-universal-npm-0.8.2-66bbf1e939-87ed38c5c5.zip/node_modules/ky-universal/",
+        ["virtual:c57126693973487afb38040e6c96c808db973bfd8d8f03e0615283e81a121c2db1f9ebdc4b787626aa2152b501f6088815f958b3a1ed385d40938f84adc90592#npm:0.8.2", {
+          "packageLocation": "./.yarn/__virtual__/ky-universal-virtual-222c901cb4/0/cache/ky-universal-npm-0.8.2-66bbf1e939-87ed38c5c5.zip/node_modules/ky-universal/",
           "packageDependencies": [
-            ["ky-universal", "virtual:209fe4f7240ea92f98b62f666c847769f96f763e7ceaa077035307eed7f53bcba5d7d5ec2691c5a964d9ee7695c2e1a618789616b75325aa53c104a184539d70#npm:0.8.2"],
+            ["ky-universal", "virtual:c57126693973487afb38040e6c96c808db973bfd8d8f03e0615283e81a121c2db1f9ebdc4b787626aa2152b501f6088815f958b3a1ed385d40938f84adc90592#npm:0.8.2"],
             ["@types/ky", null],
             ["@types/web-streams-polyfill", null],
             ["abort-controller", "npm:3.0.0"],
-            ["ky", "npm:0.23.0"],
+            ["ky", "npm:0.24.0"],
             ["node-fetch", "npm:3.0.0-beta.9"],
             ["web-streams-polyfill", null]
           ],
