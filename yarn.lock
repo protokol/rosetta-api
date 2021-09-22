@@ -14,15 +14,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkecosystem/client@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@arkecosystem/client@npm:2.0.0"
+"@arkecosystem/client@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@arkecosystem/client@npm:3.0.0"
   dependencies:
     is-url-superb: ^4.0.0
-    ky: ^0.23.0
+    ky: ^0.24.0
     ky-universal: ^0.8.2
     node-dotify: ^1.0.2
-  checksum: 90325d692888d43ad01c91eabab1352bbb1c8b071967bab01bafbaff1191df8bf0cb42ba19dcfbe86a82df50655fdca1222d1f2ec69e6b93187563ef40b48cde
+  checksum: 4a1d60aec61e84ebb229c4e03151b71d2e6d5ebfb7547a676d7316c1ff43b1574c0b5c0de20ededb1d72159d6fa331df8bf3e39ddf46351e4e602eb6ca058d2d
   languageName: node
   linkType: hard
 
@@ -2172,7 +2172,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@protokol/rosetta-api@workspace:packages/rosetta"
   dependencies:
-    "@arkecosystem/client": ^2.0.0
+    "@arkecosystem/client": ^3.0.0
     "@arkecosystem/core-api": ^3.0.0-next
     "@arkecosystem/core-kernel": ^3.0.0-next
     "@arkecosystem/crypto": ^3.0.0-next
@@ -8366,10 +8366,10 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"ky@npm:^0.23.0":
-  version: 0.23.0
-  resolution: "ky@npm:0.23.0"
-  checksum: 60d7d2ff554b3eb8e1520d77f25f19b073bdac2f42fa5d6f2c6ee1d3798eaa9641fff25ce10f35db8181f816f2a456ed195edaadc8ce8e4841487f319ab515ea
+"ky@npm:^0.24.0":
+  version: 0.24.0
+  resolution: "ky@npm:0.24.0"
+  checksum: a0b2c369f523d5f98521a91f89e4d78f9502678e10c683c5587ac5e780d2600c6c65cea3dab1de6c862178222449b0af41ed5d749497f8384289bc2a3a16f0e8
   languageName: node
   linkType: hard
 
