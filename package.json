@@ -29,13 +29,11 @@
 		"core:testnet": "cross-env CORE_PATH_CONFIG=./config/networks/testnet yarn ark core:run --env=test --network=testnet",
 		"forger:testnet": "cross-env CORE_PATH_CONFIG=./config/networks/testnet yarn ark forger:run --env=test --network=testnet",
 		"relay:testnet": "cross-env CORE_PATH_CONFIG=./config/networks/testnet yarn ark relay:run --env=test --network=testnet",
-		"manager:testnet": "cross-env CORE_PATH_CONFIG=./config/networks/testnet yarn ark manager:run --env=test --network=testnet",
-		"manager:devnet": "cross-env CORE_PATH_CONFIG=./config/networks/devnet yarn ark manager:run --env=test --network=devnet",
 		"full:testnet": "cross-env CORE_PATH_CONFIG=./config/networks/testnet ark core:run --networkStart --env=test --network=testnet"
 	},
 	"dependencies": {
-		"@arkecosystem/core": "^3.0.0-next",
-		"@arkecosystem/core-cli": "^3.0.0-next"
+		"@arkecosystem/core": "^3.0.0",
+		"@arkecosystem/core-cli": "^3.0.0"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^2.0.0",
