@@ -1820,7 +1820,7 @@ __metadata:
     "@arkecosystem/core": ^3.0.0
     "@arkecosystem/core-cli": ^3.0.0
     "@sindresorhus/tsconfig": ^2.0.0
-    "@types/eslint": ^7.2.0
+    "@types/eslint": ^8.0.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest": ^27.0.0
     "@types/node": ^14.14.37
@@ -2046,13 +2046,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:*, @types/eslint@npm:^7.2.0":
+"@types/eslint@npm:*":
   version: 7.28.0
   resolution: "@types/eslint@npm:7.28.0"
   dependencies:
     "@types/estree": "*"
     "@types/json-schema": "*"
   checksum: 75ac2577d2a2e35bae66f56d2d1c871d5e836b2721cf14bd3df450c9d584eba48fa3b1013fba710245bf4795f16e1df0ed315e543e3199c4815ee4782537d0ae
+  languageName: node
+  linkType: hard
+
+"@types/eslint@npm:^8.0.0":
+  version: 8.2.0
+  resolution: "@types/eslint@npm:8.2.0"
+  dependencies:
+    "@types/estree": "*"
+    "@types/json-schema": "*"
+  checksum: 18f37790afc57412c74c9a0ef9a8cc44c1237a3f3d70e3e4e3daad38ed501f1a70395ff3955d3e4b481a5d04e6819ad2c377cd287c7315b3b633f0f1bda7b4a2
   languageName: node
   linkType: hard
 
